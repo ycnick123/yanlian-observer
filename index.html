@@ -147,14 +147,14 @@
                             <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500 cursor-pointer hover:shadow-lg transition" onclick="showModal('cron-completed')">
                                 <div class="text-3xl font-bold text-blue-600">✅</div>
                                 <p class="text-gray-600">已完成</p>
-                                <p class="text-2xl font-bold mt-2">3</p>
-                                <p class="text-xs text-blue-700 mt-2 font-medium">开机自检、每日简报、自动更新</p>
+                                <p class="text-2xl font-bold mt-2">4</p>
+                                <p class="text-xs text-blue-700 mt-2 font-medium">开机自检、每日简报、VC 投资、自动更新</p>
                             </div>
                             <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-500">
                                 <div class="text-3xl font-bold text-purple-600">📅</div>
                                 <p class="text-gray-600">下次执行</p>
-                                <p class="text-sm font-bold mt-2">明早 08:30</p>
-                                <p class="text-xs text-purple-700 mt-2 font-medium">每日新闻简报</p>
+                                <p class="text-sm font-bold mt-2">明早 08:30 / 08:35</p>
+                                <p class="text-xs text-purple-700 mt-2 font-medium">每日新闻简报、VC 投资简报</p>
                             </div>
                         </div>
                     </section>
@@ -928,7 +928,7 @@
             'cron-completed': {
                 title: '✅ 今日已完成任务',
                 category: 'Cron 任务',
-                time: '🕐 3 个任务已执行',
+                time: '🕐 4 个任务已执行',
                 content: `
                     <div class="space-y-4">
                         <div class="bg-blue-50 rounded-xl p-4">
@@ -948,7 +948,17 @@
                                 <li><strong>执行时间：</strong>每日 08:30（Asia/Shanghai）</li>
                                 <li><strong>今日执行：</strong>08:30 已完成</li>
                                 <li><strong>状态：</strong>✅ 正常</li>
-                                <li><strong>职责：</strong>生成每日新闻简报（6 条 + 深度解析），发送至飞书</li>
+                                <li><strong>职责：</strong>生成每日新闻简报（6 条 + 深度解析），更新到网站</li>
+                            </ul>
+                        </div>
+                        <div class="bg-pink-50 rounded-xl p-4">
+                            <h3 class="font-bold text-pink-900 mb-3">📊 VC 投资简报（08:35）</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>Cron ID：</strong>da764e86-1afe-43d8-b7ee-896f8305985b</li>
+                                <li><strong>执行时间：</strong>每日 08:35（Asia/Shanghai）</li>
+                                <li><strong>下次执行：</strong>明天 08:35</li>
+                                <li><strong>状态：</strong>⏳ 等待中</li>
+                                <li><strong>职责：</strong>生成 VC/创投投资简报（5-8 条 + 深度解析），更新到网站</li>
                             </ul>
                         </div>
                         <div class="bg-green-50 rounded-xl p-4">
