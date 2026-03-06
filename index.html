@@ -259,6 +259,9 @@
                             <button onclick="switchInboxCategory('note')" id="inbox-note" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
                                 📝 工作笔记
                             </button>
+                            <button onclick="switchInboxCategory('novel')" id="inbox-novel" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                                📖 原创小说
+                            </button>
                         </div>
 
                         <!-- 信息列表 -->
@@ -376,6 +379,23 @@
                                     <span class="text-pink-600 font-medium">查看 →</span>
                                 </div>
                             </div>
+
+                            <!-- 原创小说示例 -->
+                            <div class="inbox-item bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-l-4 border-indigo-500 cursor-pointer" data-category="novel" onclick="showModal('novel-1')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📖</span>
+                                            <h3 class="font-bold text-gray-900">原创小说栏目已开启</h3>
+                                            <span class="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs rounded-full">原创小说</span>
+                                            <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded-full">最新</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">欢迎来到原创小说世界！这里将展示精彩的原创故事、连载小说、短篇集等文学作品</p>
+                                        <p class="text-xs text-gray-400">🕐 栏目创建中 · 敬请期待</p>
+                                    </div>
+                                    <span class="text-indigo-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- 空状态提示 -->
@@ -391,7 +411,7 @@
                             <span class="text-xl mr-2">📈</span>
                             信息区统计
                         </h3>
-                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
                             <div class="text-center p-3 bg-purple-50 rounded-xl">
                                 <p class="text-2xl font-bold text-purple-600" id="count-daily">2</p>
                                 <p class="text-xs text-gray-600">每日简报</p>
@@ -408,8 +428,12 @@
                                 <p class="text-2xl font-bold text-pink-600" id="count-note">2</p>
                                 <p class="text-xs text-gray-600">工作笔记</p>
                             </div>
+                            <div class="text-center p-3 bg-indigo-50 rounded-xl">
+                                <p class="text-2xl font-bold text-indigo-600" id="count-novel">1</p>
+                                <p class="text-xs text-gray-600">原创小说</p>
+                            </div>
                             <div class="text-center p-3 bg-gray-50 rounded-xl">
-                                <p class="text-2xl font-bold text-gray-600" id="count-all">7</p>
+                                <p class="text-2xl font-bold text-gray-600" id="count-all">8</p>
                                 <p class="text-xs text-gray-600">总计</p>
                             </div>
                         </div>
@@ -1363,6 +1387,63 @@
                                 <li>• 心跳监控：每 30 分钟，静默</li>
                                 <li>• 每日复盘：23:00，静默</li>
                             </ul>
+                        </div>
+                    </div>
+                `
+            },
+            'novel-1': {
+                title: '📖 原创小说栏目',
+                category: '原创小说',
+                time: '🕐 栏目创建中',
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border-l-4 border-indigo-500">
+                            <h3 class="font-bold text-indigo-900 mb-3 text-xl">🎉 欢迎来到原创小说世界！</h3>
+                            <p class="text-gray-700 mb-4">这里是专属的原创文学空间，将展示：</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-indigo-500 mr-2">✨</span>
+                                    <span><strong>连载小说</strong> - 持续更新的长篇故事</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-indigo-500 mr-2">✨</span>
+                                    <span><strong>短篇集</strong> - 独立完整的精彩短篇</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-indigo-500 mr-2">✨</span>
+                                    <span><strong>散文随笔</strong> - 生活感悟与思考</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-indigo-500 mr-2">✨</span>
+                                    <span><strong>诗歌</strong> - 韵律与意境的表达</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="font-bold text-blue-900 mb-3">📝 如何发布作品</h3>
+                            <p class="text-gray-700 mb-3">只需告诉我：</p>
+                            <ol class="space-y-2 text-gray-700 list-decimal list-inside">
+                                <li>作品标题</li>
+                                <li>作品类型（长篇/短篇/散文/诗歌）</li>
+                                <li>作品内容</li>
+                                <li>是否连载（如连载，会标注"连载中"）</li>
+                            </ol>
+                        </div>
+
+                        <div class="bg-purple-50 rounded-xl p-6">
+                            <h3 class="font-bold text-purple-900 mb-3">💡 栏目特色</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• 精美的阅读界面（手机/电脑双优化）</li>
+                                <li>• 自动保存与版本管理</li>
+                                <li>• 支持目录导航（长篇小说）</li>
+                                <li>• 可随时更新与修订</li>
+                            </ul>
+                        </div>
+
+                        <div class="text-center py-6">
+                            <p class="text-gray-600 mb-4">🎊 期待你的第一部作品！</p>
+                            <p class="text-sm text-gray-500">告诉我你想创作的故事，我们一起把它变成现实 ✨</p>
                         </div>
                     </div>
                 `
