@@ -167,6 +167,11 @@
                             今日工作日记
                         </h2>
                         <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4 py-2">
+                                <p class="font-semibold text-gray-900">00:57:49 - 每日复盘机制创建</p>
+                                <p class="text-gray-600">创建每日 23:00 自动复盘 Cron 任务，总结当天工作和用户交代事项，更新 MEMORY.md 和网站</p>
+                            </div>
+
                             <div class="border-l-4 border-purple-500 pl-4 py-2">
                                 <p class="font-semibold text-gray-900">00:50 - 每日复盘机制创建</p>
                                 <p class="text-gray-600">用户要求每天复盘所有工作和交代事项，记入记忆并更新到网站。创建每日 23:00 执行的 Cron 任务（ID: 8db22032），自动完成复盘流程</p>
@@ -346,6 +351,24 @@
                                             <h3 class="font-bold text-gray-900">工作流程优化记录</h3>
                                             <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span>
                                         </div>
+                            <!-- 今日复盘 -->
+                            <div class="inbox-item bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border-l-4 border-pink-500 cursor-pointer" data-category="note" onclick="showModal('note-2')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">2026-03-06 每日工作复盘</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span>
+                                            <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded-full">最新</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">VC 简报分类调整、简报通知简化、每日复盘机制创建等 5 项核心交代事项完成</p>
+                                        <p class="text-xs text-gray-400">🕐 00:57:49 完成 · 已记入 MEMORY.md</p>
+                                    </div>
+                                    <span class="text-pink-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+
                                         <p class="text-gray-600 text-sm mb-2">用户偏好：Agent Reach 搜索 > Brave/web_search；浏览器 clawd 模式；截图 PNG 格式</p>
                                         <p class="text-xs text-gray-400">🕐 持续更新 · 记录关键决策和偏好</p>
                                     </div>
@@ -385,7 +408,7 @@
                                 <p class="text-xs text-gray-600">工作笔记</p>
                             </div>
                             <div class="text-center p-3 bg-gray-50 rounded-xl">
-                                <p class="text-2xl font-bold text-gray-600" id="count-all">6</p>
+                                <p class="text-2xl font-bold text-gray-600" id="count-all">7</p>
                                 <p class="text-xs text-gray-600">总计</p>
                             </div>
                         </div>
@@ -397,7 +420,7 @@
             <footer class="bg-white border-t mt-12">
                 <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
                     <p>📊 此网站由 OpenClaw 自动维护 | 数据实时更新</p>
-                    <p class="mt-2 text-sm">最后更新：<span id="update-time">2026-3-7 00:46:00</span></p>
+                    <p class="mt-2 text-sm">最后更新：<span id="update-time">2026/3/7 00:57:49</span></p>
                 </div>
             </footer>
         </div>
