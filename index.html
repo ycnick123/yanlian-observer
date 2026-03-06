@@ -1435,26 +1435,6 @@
             }
         };
 
-        // 跳转到信息区对应条目
-        function jumpToInbox(taskId) {
-            // 切换到信息区标签页
-            switchTab('inbox');
-            switchInboxCategory('all');
-            
-            // 关闭模态框
-            closeModal();
-            
-            // 滚动到对应条目并高亮
-            setTimeout(() => {
-                const item = document.querySelector(`[onclick="showModal('${taskId}')"]`);
-                if (item) {
-                    item.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    item.classList.add('ring-4', 'ring-purple-500');
-                    setTimeout(() => item.classList.remove('ring-4', 'ring-purple-500'), 2000);
-                }
-            }, 100);
-        }
-
         // 跳转到信息区
         function jumpToInbox(target) {
             // 切换到信息区页面
