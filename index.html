@@ -884,12 +884,6 @@
                             <h3 class="font-bold text-purple-900 mb-3">📊 今日统计</h3>
                             <p class="text-gray-700">今日已执行自动更新 17 次，所有任务运行正常，无错误。</p>
                         </div>
-                        
-                        <!-- 跳转按钮 -->
-                        <button onclick="jumpToInbox('task-latest'); closeModal();" class="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center shadow-lg">
-                            <span class="text-xl mr-2">📥</span>
-                            跳转到信息区查看
-                        </button>
                     </div>
                 `
             },
@@ -924,12 +918,6 @@
                             <h3 class="font-bold text-purple-900 mb-3">📊 监控状态</h3>
                             <p class="text-gray-700">心跳监控系统正常运行，今日无异常警报。系统连接稳定。</p>
                         </div>
-                        
-                        <!-- 跳转按钮 -->
-                        <button onclick="jumpToInbox('inbox-all'); closeModal();" class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center shadow-lg">
-                            <span class="text-xl mr-2">📥</span>
-                            跳转到信息区查看
-                        </button>
                     </div>
                 `
             },
@@ -969,12 +957,6 @@
                                 <li><strong>职责：</strong>GitHub Actions 自动同步 workspace 到 GitHub Pages</li>
                             </ul>
                         </div>
-                        
-                        <!-- 跳转按钮 -->
-                        <button onclick="jumpToInbox('task'); closeModal();" class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center shadow-lg">
-                            <span class="text-xl mr-2">📥</span>
-                            跳转到信息区查看
-                        </button>
                     </div>
                 `
             },
@@ -1294,24 +1276,6 @@
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
             document.body.style.overflow = 'auto';
-        }
-
-        // 跳转到信息区
-        function jumpToInbox(target) {
-            // 切换到信息区标签页
-            switchTab('inbox');
-            
-            // 如果指定了分类，切换到对应分类
-            if (target === 'task-latest') {
-                switchInboxCategory('task');
-            } else if (target === 'inbox-all') {
-                switchInboxCategory('all');
-            } else if (target === 'task') {
-                switchInboxCategory('task');
-            }
-            
-            // 滚动到信息区顶部
-            document.getElementById('page-inbox').scrollIntoView({ behavior: 'smooth' });
         }
 
         // 点击模态框外部关闭
