@@ -163,20 +163,24 @@
                         </h2>
                         <div class="space-y-4">
                             <div class="border-l-4 border-green-500 pl-4 py-2">
+                                <p class="font-semibold text-gray-900">21:26 - 网站实时更新</p>
+                                <p class="text-gray-600">Cron 任务自动触发，同步最新任务状态和工作记录</p>
+                            </div>
+                            <div class="border-l-4 border-purple-500 pl-4 py-2">
+                                <p class="font-semibold text-gray-900">21:23 - 防缓存配置完成</p>
+                                <p class="text-gray-600">添加 Cache-Control 头，解决手机浏览器缓存问题</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4 py-2">
                                 <p class="font-semibold text-gray-900">21:16 - 网站自动更新</p>
                                 <p class="text-gray-600">Cron 任务触发实时更新，同步最新工作状态</p>
                             </div>
-                            <div class="border-l-4 border-purple-500 pl-4 py-2">
+                            <div class="border-l-4 border-blue-500 pl-4 py-2">
                                 <p class="font-semibold text-gray-900">21:13 - 信息区详情页</p>
                                 <p class="text-gray-600">添加模态框功能，点击查看完整内容</p>
                             </div>
-                            <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <div class="border-l-4 border-orange-500 pl-4 py-2">
                                 <p class="font-semibold text-gray-900">21:10 - Token 更新成功</p>
                                 <p class="text-gray-600">新 Token 已配置 repo 权限，自动推送成功</p>
-                            </div>
-                            <div class="border-l-4 border-blue-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">20:42 - 信息区功能</p>
-                                <p class="text-gray-600">添加信息区（Inbox）和二级菜单，支持分类查看工作内容</p>
                             </div>
                         </div>
                     </section>
@@ -215,6 +219,22 @@
 
                         <!-- 信息列表 -->
                         <div id="inbox-list" class="space-y-3">
+                            <!-- 实时更新 -->
+                            <div class="inbox-item bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-500 cursor-pointer" data-category="task" onclick="showModal('task-2')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">⚡</span>
+                                            <h3 class="font-bold text-gray-900">网站实时更新 - 21:26</h3>
+                                            <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">自动更新</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">Cron 任务每 10 分钟自动同步最新任务状态和工作记录</p>
+                                        <p class="text-xs text-gray-400">🕐 21:26 完成 · 频率：每 10 分钟</p>
+                                    </div>
+                                    <span class="text-green-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
                             <!-- 每日简报 -->
                             <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="daily" onclick="showModal('daily-1')">
                                 <div class="flex items-start justify-between">
@@ -327,7 +347,7 @@
                                 <p class="text-xs text-gray-600">工作笔记</p>
                             </div>
                             <div class="text-center p-3 bg-gray-50 rounded-xl">
-                                <p class="text-2xl font-bold text-gray-600" id="count-all">5</p>
+                                <p class="text-2xl font-bold text-gray-600" id="count-all">6</p>
                                 <p class="text-xs text-gray-600">总计</p>
                             </div>
                         </div>
@@ -608,6 +628,38 @@
                             <p class="font-semibold text-gray-900">美食博主探店 vlog</p>
                         </div>
                         <p class="text-sm text-gray-500 text-center mt-4">💡 完整热榜数据已保存至本地</p>
+                    </div>
+                `
+            },
+            'task-2': {
+                title: '⚡ 网站实时更新 - 21:26',
+                category: '自动更新',
+                time: '🕐 21:26 完成 · 频率：每 10 分钟',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-xl p-4">
+                            <h3 class="font-bold text-green-900 mb-3">📋 更新内容</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>✅ 同步最新 Cron 任务状态（5 个任务正常运行）</li>
+                                <li>✅ 更新工作日记（添加 21:26 实时更新记录）</li>
+                                <li>✅ 添加信息区新条目（实时更新通知）</li>
+                                <li>✅ 更新统计信息（总计 6 条信息）</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <h3 class="font-bold text-blue-900 mb-3">🔄 Cron 任务状态</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>🟢 网站实时更新 - 每 10 分钟 - 状态：ok</li>
+                                <li>🟡 心跳监控 - 每 30 分钟 - 状态：ok</li>
+                                <li>🟡 开机自检 - 每 60 分钟 - 状态：ok</li>
+                                <li>📅 每日新闻简报 - 08:30 - 状态：ok</li>
+                                <li>📅 网站自动更新 - 20:00 - 状态：ok</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4">
+                            <h3 class="font-bold text-purple-900 mb-3">📊 运行统计</h3>
+                            <p class="text-gray-700">今日已执行自动更新 12 次，所有任务运行正常，无错误。</p>
+                        </div>
                     </div>
                 `
             },
