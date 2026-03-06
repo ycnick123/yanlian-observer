@@ -1,0 +1,29 @@
+name: Auto Update Website
+
+on:
+  schedule:
+    # 每天 20:00 UTC (北京时间凌晨 4:00) 自动更新
+    - cron: '0 20 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Update timestamp
+        run: |
+          # 更新网站最后更新时间
+          sed -i "s/最后更新：.*/最后更新：$(date '+%Y-%m-%d %H:%M:%S') CST/" index.html
+          
+      - name: Commit and push
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add index.html
+          git commit -m "Auto update: $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
