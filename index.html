@@ -229,6 +229,21 @@
                         <!-- 信息列表 -->
                         <div id="inbox-list" class="space-y-3">
                             <!-- 连载小说十大神格设定 -->
+                            <!-- 连载小说十大神格设定 -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-4')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">连载小说十大神格设定完成</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span><span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded-full">最新</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">主角真身：第十神格【归墟】人间体。九大神格原创命名（隙织蚀铸溯映寂燃渊），性格·名字·技能三位一体，平级相互牵制</p>
+                                        <p class="text-xs text-gray-400">🕐 2026/3/7 07:38:06 更新 · 待确认收养人/开场事件/女主设定</p>
+                                    </div>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
                             <div class="inbox-item bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-4')">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
@@ -439,7 +454,7 @@
                                 <p class="text-xs text-gray-600">任务完成</p>
                             </div>
                             <div class="text-center p-3 bg-pink-50 rounded-xl">
-                                <p class="text-2xl font-bold text-pink-600" id="count-note">5</p>
+                                <p class="text-2xl font-bold text-pink-600" id="count-note">6</p>
                                 <p class="text-xs text-gray-600">工作笔记</p>
                             </div>
                             <div class="text-center p-3 bg-indigo-50 rounded-xl">
@@ -447,7 +462,7 @@
                                 <p class="text-xs text-gray-600">原创小说</p>
                             </div>
                             <div class="text-center p-3 bg-gray-50 rounded-xl">
-                                <p class="text-2xl font-bold text-gray-600" id="count-all">11</p>
+                                <p class="text-2xl font-bold text-gray-600" id="count-all">12</p>
                                 <p class="text-xs text-gray-600">总计</p>
                             </div>
                         </div>
@@ -459,7 +474,7 @@
             <footer class="bg-white border-t mt-12">
                 <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
                     <p>📊 此网站由 OpenClaw 自动维护 | 数据实时更新</p>
-                    <p class="mt-2 text-sm">最后更新：<span id="update-time">2026/3/7 07:27:58</span></p>
+                    <p class="mt-2 text-sm">最后更新：<span id="update-time">2026/3/7 07:38:06</span></p>
                 </div>
             </footer>
         </div>
@@ -1453,7 +1468,56 @@
                         </div>
                     </div>
                 `
-            },
+,
+            'note-4': {
+                title: '📝 连载小说十大神格设定完成',
+                category: '工作笔记',
+                time: '🕐 2026/3/7 07:38:06 更新',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-5 mb-4">
+                            <h3 class="font-bold text-purple-900 mb-2 text-lg">📖 核心设定</h3>
+                            <p class="text-gray-700 text-sm">主角真身：第十神格【归墟】人间体（自己不知道）。九大神格平级，相互牵制，无上下级关系。</p>
+                        </div>
+
+                        <div class="bg-white border-l-4 border-purple-500 rounded-xl p-4 shadow-sm">
+                            <h4 class="font-bold text-gray-900 mb-2">🔱 九大神格（性格·名字·技能三位一体）</h4>
+                            <div class="grid grid-cols-3 gap-3 text-sm">
+                                <div class="bg-purple-50 p-2 rounded"><strong>隙</strong><br>孤僻逃避·穿梭缝隙</div>
+                                <div class="bg-pink-50 p-2 rounded"><strong>织</strong><br>控制欲强·编织联系</div>
+                                <div class="bg-red-50 p-2 rounded"><strong>蚀</strong><br>贪婪·侵蚀同化（主角吸收）</div>
+                                <div class="bg-orange-50 p-2 rounded"><strong>铸</strong><br>固执·铸造形态</div>
+                                <div class="bg-yellow-50 p-2 rounded"><strong>溯</strong><br>怀旧·回溯过程</div>
+                                <div class="bg-green-50 p-2 rounded"><strong>映</strong><br>自卑·复制镜像</div>
+                                <div class="bg-blue-50 p-2 rounded"><strong>寂</strong><br>冷漠·静止万物</div>
+                                <div class="bg-indigo-50 p-2 rounded"><strong>燃</strong><br>暴躁·点燃火焰</div>
+                                <div class="bg-gray-50 p-2 rounded"><strong>渊</strong><br>深沉·吞噬释放</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-l-4 border-indigo-500 rounded-xl p-4 shadow-sm">
+                            <h4 class="font-bold text-gray-900 mb-2">🌌 第十神格【归墟】</h4>
+                            <p class="text-gray-700 text-sm mb-2"><strong>权能：</strong>万法归一，终归虚无。可吞噬其他神格力量（但不毁灭），调和神格冲突，让一切回归原点。</p>
+                            <p class="text-gray-700 text-sm"><strong>代价：</strong>越使用越"虚无化"，可能失去存在感。</p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4">
+                            <h4 class="font-bold text-gray-900 mb-2">📋 待确认内容（明日继续）</h4>
+                            <ul class="space-y-1 text-sm text-gray-700">
+                                <li>• 收养人身份（丐帮/戏班/盗门/隐世高手？）</li>
+                                <li>• 开场事件（养父失踪/神格现世/身份暴露？）</li>
+                                <li>• 女主/配角设定</li>
+                                <li>• 叙事风格（基调/权谋深度/成长节奏）</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 text-center">
+                            <p class="text-xs text-gray-600">📊 世界观：东方神话底色玄幻 + 三教九流 + 跨时代七纪元</p>
+                            <p class="text-xs text-gray-500 mt-1">🕐 更新时间：2026/3/7 07:38:06</p>
+                        </div>
+                    </div>
+                `
+            }            },
             'novel-1': {
                 title: '📖 第零条法则（科幻短篇）',
                 category: '原创小说',
