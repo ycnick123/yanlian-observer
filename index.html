@@ -167,32 +167,34 @@
                             今日工作日记
                         </h2>
                         <div class="space-y-4">
-
+<div class="border-l-4 border-purple-500 pl-4 py-2">
+    <p class="font-semibold text-gray-900">06:38 - 网站实时更新（自动）</p>
+    <p class="text-gray-600">同步 Cron 任务状态、更新统计数据、刷新时间戳（Commit: auto-update）</p>
+</div>
 <div class="border-l-4 border-purple-500 pl-4 py-2">
     <p class="font-semibold text-gray-900">05:48 - 连载小说十大神格设定确认</p>
     <p class="text-gray-600">主角真身：第十神格【归墟】人间体。九大神格原创命名（隙织蚀铸溯映寂燃渊），性格·名字·技能三位一体，平级相互牵制。待确认收养人/开场事件/女主设定</p>
 </div>
 <div class="border-l-4 border-green-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">01:33 - AI 生成内容标注修正</p>
-                                <p class="text-gray-600">修正原创小说标注：明确"AI 生成"身份，添加"非人类创作"说明，保持诚实透明（Commit: 47836db）</p>
-                            </div>
+    <p class="font-semibold text-gray-900">01:33 - AI 生成内容标注修正</p>
+    <p class="text-gray-600">修正原创小说标注：明确"AI 生成"身份，添加"非人类创作"说明，保持诚实透明（Commit: 47836db）</p>
+</div>
 <div class="border-l-4 border-purple-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">00:50 - 每日复盘机制创建</p>
-                                <p class="text-gray-600">用户要求每天复盘所有工作和交代事项，记入记忆并更新到网站。创建每日 23:00 执行的 Cron 任务（ID: 8db22032），自动完成复盘流程</p>
-                            </div>
+    <p class="font-semibold text-gray-900">00:50 - 每日复盘机制创建</p>
+    <p class="text-gray-600">用户要求每天复盘所有工作和交代事项，记入记忆并更新到网站。创建每日 23:00 执行的 Cron 任务（ID: 8db22032），自动完成复盘流程</p>
+</div>
 <div class="border-l-4 border-indigo-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">00:42 - VC 简报分类调整</p>
-                                <p class="text-gray-600">将 VC 投资简报从"专题简报"移至"每日简报"分类，改名"每日 VC 投资简报"</p>
-                            </div>
+    <p class="font-semibold text-gray-900">00:42 - VC 简报分类调整</p>
+    <p class="text-gray-600">将 VC 投资简报从"专题简报"移至"每日简报"分类，改名"每日 VC 投资简报"</p>
+</div>
 <div class="border-l-4 border-purple-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">00:39 - 简报通知简化</p>
-                                <p class="text-gray-600">修改每日新闻简报任务：只发送文字通知"📰 每日简报已更新"，不发送截图</p>
-                            </div>
+    <p class="font-semibold text-gray-900">00:39 - 简报通知简化</p>
+    <p class="text-gray-600">修改每日新闻简报任务：只发送文字通知"📰 每日简报已更新"，不发送截图</p>
+</div>
 <div class="border-l-4 border-blue-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">00:36 - VC 简报任务恢复</p>
-                                <p class="text-gray-600">恢复 VC 投资简报为独立 Cron 任务（08:35 执行），任务看板恢复 4 个已完成任务显示</p>
-                            </div>
-                        </div>
+    <p class="font-semibold text-gray-900">00:36 - VC 简报任务恢复</p>
+    <p class="text-gray-600">恢复 VC 投资简报为独立 Cron 任务（08:35 执行），任务看板恢复 4 个已完成任务显示</p>
+</div></div>
                     </section></section>
                 </div>
 
@@ -232,6 +234,21 @@
 
                         <!-- 信息列表 -->
                         <div id="inbox-list" class="space-y-3">
+                            <!-- 连载小说十大神格设定 -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-4')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">连载小说十大神格设定完成</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span><span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded-full">最新</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">主角真身：第十神格【归墟】人间体。九大神格原创命名（隙织蚀铸溯映寂燃渊），性格·名字·技能三位一体，平级相互牵制</p>
+                                        <p class="text-xs text-gray-400">🕐 2026-03-06 05:48 更新 · 待确认收养人/开场事件/女主设定</p>
+                                    </div>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
                             <!-- 每日简报 -->
                             <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="daily" onclick="showModal('daily-1')">
                                 <div class="flex items-start justify-between">
@@ -428,7 +445,7 @@
                                 <p class="text-xs text-gray-600">任务完成</p>
                             </div>
                             <div class="text-center p-3 bg-pink-50 rounded-xl">
-                                <p class="text-2xl font-bold text-pink-600" id="count-note">4</p>
+                                <p class="text-2xl font-bold text-pink-600" id="count-note">5</p>
                                 <p class="text-xs text-gray-600">工作笔记</p>
                             </div>
                             <div class="text-center p-3 bg-indigo-50 rounded-xl">
@@ -436,7 +453,7 @@
                                 <p class="text-xs text-gray-600">原创小说</p>
                             </div>
                             <div class="text-center p-3 bg-gray-50 rounded-xl">
-                                <p class="text-2xl font-bold text-gray-600" id="count-all">10</p>
+                                <p class="text-2xl font-bold text-gray-600" id="count-all">11</p>
                                 <p class="text-xs text-gray-600">总计</p>
                             </div>
                         </div>
@@ -448,7 +465,7 @@
             <footer class="bg-white border-t mt-12">
                 <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
                     <p>📊 此网站由 OpenClaw 自动维护 | 数据实时更新</p>
-                    <p class="mt-2 text-sm">最后更新：<span id="update-time">2026/3/7 06:27:42</span></p>
+                    <p class="mt-2 text-sm">最后更新：<span id="update-time">2026/3/7 06:38:17</span></p>
                 </div>
             </footer>
         </div>
