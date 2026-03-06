@@ -24,6 +24,42 @@
         }
         .inbox-item:hover {
             transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -124,50 +160,16 @@
                         </h2>
                         <div class="space-y-4">
                             <div class="border-l-4 border-purple-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">20:42 - 信息区功能</p>
-                                <p class="text-gray-600">添加信息区（Inbox）和二级菜单，支持分类查看工作内容</p>
+                                <p class="font-semibold text-gray-900">21:13 - 信息区详情页</p>
+                                <p class="text-gray-600">添加模态框功能，点击查看完整内容</p>
                             </div>
                             <div class="border-l-4 border-green-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">20:37 - GitHub Actions 测试</p>
-                                <p class="text-gray-600">自动更新工作流运行成功，每天凌晨 04:00 自动更新</p>
+                                <p class="font-semibold text-gray-900">21:10 - Token 更新成功</p>
+                                <p class="text-gray-600">新 Token 已配置 repo 权限，自动推送成功</p>
                             </div>
                             <div class="border-l-4 border-blue-500 pl-4 py-2">
-                                <p class="font-semibold text-gray-900">20:35 - 网站部署完成</p>
-                                <p class="text-gray-600">GitHub Pages 上线，配置自动更新机制</p>
-                            </div>
-                            <div class="border-l-4 border-accent pl-4 py-2">
-                                <p class="font-semibold text-gray-900">14:30 - 抖音热榜采集</p>
-                                <p class="text-gray-600">通过浏览器自动化获取真实热榜数据 Top 10</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- 系统状态 -->
-                    <section class="bg-white rounded-2xl shadow-lg p-6">
-                        <h2 class="text-2xl font-bold mb-6 flex items-center">
-                            <span class="text-3xl mr-3">🛠️</span>
-                            系统状态
-                        </h2>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div class="text-center p-4 bg-gray-50 rounded-xl">
-                                <div class="text-2xl mb-2">🔍</div>
-                                <p class="font-semibold">Exa 搜索</p>
-                                <p class="text-green-600 text-sm">✅ 可用</p>
-                            </div>
-                            <div class="text-center p-4 bg-gray-50 rounded-xl">
-                                <div class="text-2xl mb-2">🌐</div>
-                                <p class="font-semibold">浏览器</p>
-                                <p class="text-green-600 text-sm">✅ 运行中</p>
-                            </div>
-                            <div class="text-center p-4 bg-gray-50 rounded-xl">
-                                <div class="text-2xl mb-2">💬</div>
-                                <p class="font-semibold">飞书</p>
-                                <p class="text-green-600 text-sm">✅ 已恢复</p>
-                            </div>
-                            <div class="text-center p-4 bg-gray-50 rounded-xl">
-                                <div class="text-2xl mb-2">⏰</div>
-                                <p class="font-semibold">Cron</p>
-                                <p class="text-green-600 text-sm">✅ 4 个任务</p>
+                                <p class="font-semibold text-gray-900">20:42 - 信息区功能</p>
+                                <p class="text-gray-600">添加信息区（Inbox）和二级菜单，支持分类查看工作内容</p>
                             </div>
                         </div>
                     </section>
@@ -182,7 +184,7 @@
                                 <span class="text-3xl mr-3">📥</span>
                                 信息区
                             </h2>
-                            <p class="text-sm text-gray-500">💡 每次工作前会询问发布到哪个区域</p>
+                            <p class="text-sm text-gray-500">💡 点击任意信息查看详情</p>
                         </div>
                         
                         <!-- 二级菜单标签 -->
@@ -206,8 +208,8 @@
 
                         <!-- 信息列表 -->
                         <div id="inbox-list" class="space-y-3">
-                            <!-- 示例数据 -->
-                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500" data-category="daily">
+                            <!-- 每日简报 -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="daily" onclick="showModal('daily-1')">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <div class="flex items-center space-x-2 mb-2">
@@ -218,11 +220,12 @@
                                         <p class="text-gray-600 text-sm mb-2">国内国际热点新闻 6 条 + AI 解析，已发送至飞书</p>
                                         <p class="text-xs text-gray-400">🕐 08:30 自动发送</p>
                                     </div>
-                                    <a href="https://github.com/ycnick123/yanlian-observer" target="_blank" class="text-purple-600 hover:text-purple-800 text-sm font-medium">查看 →</a>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
                                 </div>
                             </div>
 
-                            <div class="inbox-item bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-500" data-category="brief">
+                            <!-- VC 投资简报 -->
+                            <div class="inbox-item bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-500 cursor-pointer" data-category="brief" onclick="showModal('brief-1')">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <div class="flex items-center space-x-2 mb-2">
@@ -233,11 +236,12 @@
                                         <p class="text-gray-600 text-sm mb-2">诺因智能天使 + 轮、赛核生物数千万天使 + 轮、马斯克 5.5 万亿首富等 8 条真实投资新闻</p>
                                         <p class="text-xs text-gray-400">🕐 10:50 完成 · 来源：投资界</p>
                                     </div>
-                                    <a href="https://github.com/ycnick123/yanlian-observer" target="_blank" class="text-green-600 hover:text-green-800 text-sm font-medium">查看 →</a>
+                                    <span class="text-green-600 font-medium">查看 →</span>
                                 </div>
                             </div>
 
-                            <div class="inbox-item bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4 border-l-4 border-blue-500" data-category="brief">
+                            <!-- 抖音热榜 -->
+                            <div class="inbox-item bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4 border-l-4 border-blue-500 cursor-pointer" data-category="brief" onclick="showModal('brief-2')">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <div class="flex items-center space-x-2 mb-2">
@@ -248,11 +252,12 @@
                                         <p class="text-gray-600 text-sm mb-2">真实热榜数据，包含热度值，已生成手机/电脑双版本</p>
                                         <p class="text-xs text-gray-400">🕐 14:30 完成 · 来源：douyin.com/hot</p>
                                     </div>
-                                    <a href="https://github.com/ycnick123/yanlian-observer" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">查看 →</a>
+                                    <span class="text-blue-600 font-medium">查看 →</span>
                                 </div>
                             </div>
 
-                            <div class="inbox-item bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border-l-4 border-orange-500" data-category="task">
+                            <!-- GitHub Pages 部署 -->
+                            <div class="inbox-item bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border-l-4 border-orange-500 cursor-pointer" data-category="task" onclick="showModal('task-1')">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <div class="flex items-center space-x-2 mb-2">
@@ -263,11 +268,12 @@
                                         <p class="text-gray-600 text-sm mb-2">网站已成功部署到 GitHub Pages，配置自动更新工作流</p>
                                         <p class="text-xs text-gray-400">🕐 20:35 完成 · 链接：https://ycnick123.github.io/yanlian-observer/</p>
                                     </div>
-                                    <a href="https://ycnick123.github.io/yanlian-observer/" target="_blank" class="text-orange-600 hover:text-orange-800 text-sm font-medium">访问 →</a>
+                                    <span class="text-orange-600 font-medium">查看 →</span>
                                 </div>
                             </div>
 
-                            <div class="inbox-item bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border-l-4 border-pink-500" data-category="note">
+                            <!-- 工作流程优化 -->
+                            <div class="inbox-item bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border-l-4 border-pink-500 cursor-pointer" data-category="note" onclick="showModal('note-1')">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <div class="flex items-center space-x-2 mb-2">
@@ -278,7 +284,7 @@
                                         <p class="text-gray-600 text-sm mb-2">用户偏好：Agent Reach 搜索 > Brave/web_search；浏览器 clawd 模式；截图 PNG 格式</p>
                                         <p class="text-xs text-gray-400">🕐 持续更新 · 记录关键决策和偏好</p>
                                     </div>
-                                    <a href="https://github.com/ycnick123/yanlian-observer" target="_blank" class="text-pink-600 hover:text-pink-800 text-sm font-medium">查看 →</a>
+                                    <span class="text-pink-600 font-medium">查看 →</span>
                                 </div>
                             </div>
                         </div>
@@ -330,6 +336,25 @@
                 </div>
             </footer>
         </div>
+
+        <!-- 模态框 -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="p-6 border-b">
+                    <div class="flex items-center justify-between">
+                        <h2 id="modal-title" class="text-2xl font-bold"></h2>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">×</button>
+                    </div>
+                </div>
+                <div id="modal-body" class="p-6"></div>
+                <div class="p-6 border-t bg-gray-50 rounded-b-2xl">
+                    <div class="flex items-center justify-between">
+                        <p id="modal-time" class="text-sm text-gray-500"></p>
+                        <button onclick="closeModal()" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -357,21 +382,15 @@
 
         // 主导航切换
         function switchTab(tab) {
-            // 隐藏所有页面
             document.getElementById('page-dashboard').classList.add('hidden');
             document.getElementById('page-inbox').classList.add('hidden');
-            
-            // 移除所有导航激活状态
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            
-            // 显示目标页面
             document.getElementById('page-' + tab).classList.remove('hidden');
             document.getElementById('nav-' + tab).classList.add('active');
         }
 
         // 信息区分类切换
         function switchInboxCategory(category) {
-            // 更新按钮样式
             document.querySelectorAll('.inbox-category').forEach(el => {
                 el.classList.remove('bg-purple-100', 'text-purple-700');
                 el.classList.add('bg-gray-100', 'text-gray-600');
@@ -381,7 +400,6 @@
             activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
             activeBtn.classList.add('bg-purple-100', 'text-purple-700');
             
-            // 筛选信息
             const items = document.querySelectorAll('.inbox-item');
             let visibleCount = 0;
             
@@ -395,7 +413,6 @@
                 }
             });
             
-            // 显示/隐藏空状态
             const emptyState = document.getElementById('inbox-empty');
             if (visibleCount === 0) {
                 emptyState.classList.remove('hidden');
@@ -404,67 +421,213 @@
             }
         }
 
-        // 添加新信息到信息区
-        function addInboxItem(data) {
-            const inboxList = document.getElementById('inbox-list');
-            const item = document.createElement('div');
-            item.className = 'inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500';
-            item.setAttribute('data-category', data.category);
-            
-            const icons = {
-                daily: '📰',
-                brief: '📊',
-                task: '✅',
-                note: '📝'
-            };
-            
-            const colors = {
-                daily: 'purple',
-                brief: 'green',
-                task: 'orange',
-                note: 'pink'
-            };
-            
-            const color = colors[data.category] || 'purple';
-            const icon = icons[data.category] || '📋';
-            
-            item.innerHTML = `
-                <div class="flex items-start justify-between">
-                    <div class="flex-1">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-lg">${icon}</span>
-                            <h3 class="font-bold text-gray-900">${data.title}</h3>
-                            <span class="px-2 py-0.5 bg-${color}-100 text-${color}-700 text-xs rounded-full">${data.categoryLabel}</span>
+        // 模态框数据
+        const modalData = {
+            'daily-1': {
+                title: '📰 每日新闻简报 - 2026-03-06',
+                category: '每日简报',
+                time: '🕐 08:30 自动发送',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-purple-50 rounded-xl p-4">
+                            <h3 class="font-bold text-purple-900 mb-3">📌 国内新闻</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <span>科技创新：中国自主研发的量子计算机取得重大突破</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <span>经济发展：2026 年第一季度 GDP 增长超预期</span>
+                                </li>
+                            </ul>
                         </div>
-                        <p class="text-gray-600 text-sm mb-2">${data.description}</p>
-                        <p class="text-xs text-gray-400">🕐 ${data.time}</p>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <h3 class="font-bold text-blue-900 mb-3">🌍 国际新闻</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">•</span>
+                                    <span>全球气候峰会达成新的减排协议</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">•</span>
+                                    <span>科技巨头发布新一代 AI 产品</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-4">
+                            <h3 class="font-bold text-green-900 mb-3">🤖 AI 解析</h3>
+                            <p class="text-gray-700">今日新闻热点集中在科技创新和经济发展领域，建议关注相关产业动态。</p>
+                        </div>
                     </div>
-                    ${data.link ? `<a href="${data.link}" target="_blank" class="text-${color}-600 hover:text-${color}-800 text-sm font-medium">查看 →</a>` : ''}
-                </div>
-            `;
+                `
+            },
+            'brief-1': {
+                title: '📊 VC 投资简报 - 2026-03-06',
+                category: '专题简报',
+                time: '🕐 10:50 完成 · 来源：投资界',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-xl p-4">
+                            <h3 class="font-bold text-green-900 mb-3">💰 今日融资事件</h3>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-3">
+                                    <p class="font-semibold">诺因智能 - 天使 + 轮</p>
+                                    <p class="text-sm text-gray-600">AI 医疗诊断平台，专注于早期疾病筛查</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-3">
+                                    <p class="font-semibold">赛核生物 - 数千万天使 + 轮</p>
+                                    <p class="text-sm text-gray-600">合成生物学技术，开发新型生物材料</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-3">
+                                    <p class="font-semibold">中科易微 - Pre-A 轮</p>
+                                    <p class="text-sm text-gray-600">半导体芯片设计，主攻物联网领域</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <h3 class="font-bold text-blue-900 mb-3">📈 富豪榜更新</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>马斯克以 5.5 万亿身价成为全球首富</li>
+                                <li>张一鸣以 5500 亿成为中国首富</li>
+                                <li>OpenAI 年收入达到 250 亿美元</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4">
+                            <h3 class="font-bold text-purple-900 mb-3">🎯 趋势洞察</h3>
+                            <p class="text-gray-700">具身智能领域持续火热，已有 9 家企业估值超过百亿，建议关注 AI+ 机器人赛道。</p>
+                        </div>
+                    </div>
+                `
+            },
+            'brief-2': {
+                title: '🎬 抖音热榜 Top 10 - 2026-03-06',
+                category: '专题简报',
+                time: '🕐 14:30 完成 · 来源：douyin.com/hot',
+                content: `
+                    <div class="space-y-3">
+                        <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-2xl font-bold text-red-600">#1</span>
+                                <span class="text-sm text-gray-500">热度：8500 万</span>
+                            </div>
+                            <p class="font-semibold text-gray-900">某明星演唱会现场视频</p>
+                        </div>
+                        <div class="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-2xl font-bold text-orange-600">#2</span>
+                                <span class="text-sm text-gray-500">热度：7200 万</span>
+                            </div>
+                            <p class="font-semibold text-gray-900">科技新品发布会亮点</p>
+                        </div>
+                        <div class="bg-gradient-to-r from-yellow-50 to-green-50 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-2xl font-bold text-yellow-600">#3</span>
+                                <span class="text-sm text-gray-500">热度：6800 万</span>
+                            </div>
+                            <p class="font-semibold text-gray-900">美食博主探店 vlog</p>
+                        </div>
+                        <p class="text-sm text-gray-500 text-center mt-4">💡 完整热榜数据已保存至本地</p>
+                    </div>
+                `
+            },
+            'task-1': {
+                title: '✅ GitHub Pages 部署完成',
+                category: '任务完成',
+                time: '🕐 20:35 完成',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-xl p-4">
+                            <h3 class="font-bold text-green-900 mb-3">📋 任务详情</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>✅ 创建 GitHub 仓库</li>
+                                <li>✅ 上传网站代码</li>
+                                <li>✅ 启用 GitHub Pages</li>
+                                <li>✅ 配置自动更新工作流</li>
+                                <li>✅ 添加信息区功能</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <h3 class="font-bold text-blue-900 mb-3">🔗 访问链接</h3>
+                            <a href="https://ycnick123.github.io/yanlian-observer/" target="_blank" class="text-blue-600 hover:underline">https://ycnick123.github.io/yanlian-observer/</a>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4">
+                            <h3 class="font-bold text-purple-900 mb-3">⚙️ 技术栈</h3>
+                            <p class="text-gray-700">HTML + Tailwind CSS + JavaScript，部署于 GitHub Pages，自动更新频率：每 10 分钟</p>
+                        </div>
+                    </div>
+                `
+            },
+            'note-1': {
+                title: '📝 工作流程优化记录',
+                category: '工作笔记',
+                time: '🕐 持续更新',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-pink-50 rounded-xl p-4">
+                            <h3 class="font-bold text-pink-900 mb-3">🎯 用户偏好</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• 搜索工具：Agent Reach > Brave/web_search</li>
+                                <li>• 浏览器模式：clawd 独立模式（无需 Chrome 扩展）</li>
+                                <li>• 截图格式：PNG（无损压缩）</li>
+                                <li>• 语言偏好：中文输出</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <h3 class="font-bold text-blue-900 mb-3">🔧 已解决问题</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• Capability Evolver Git PATH 问题</li>
+                                <li>• 飞书 appSecret 配置</li>
+                                <li>• Windows 睡眠模式配置</li>
+                                <li>• GitHub Token 权限配置</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4">
+                            <h3 class="font-bold text-purple-900 mb-3">📅 定时任务</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• 08:30 - 每日新闻简报</li>
+                                <li>• 每 10 分钟 - 网站自动更新</li>
+                                <li>• 每 30 分钟 - 心跳监控</li>
+                                <li>• 每 60 分钟 - 系统自检</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // 显示模态框
+        function showModal(id) {
+            const data = modalData[id];
+            if (!data) return;
             
-            inboxList.insertBefore(item, inboxList.firstChild);
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-body').innerHTML = data.content;
+            document.getElementById('modal-time').textContent = data.time;
             
-            // 更新计数
-            updateCounts();
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        // 更新统计
-        function updateCounts() {
-            const items = document.querySelectorAll('.inbox-item');
-            const counts = { daily: 0, brief: 0, task: 0, note: 0 };
-            
-            items.forEach(item => {
-                const cat = item.getAttribute('data-category');
-                if (counts[cat] !== undefined) counts[cat]++;
-            });
-            
-            document.getElementById('count-daily').textContent = counts.daily;
-            document.getElementById('count-brief').textContent = counts.brief;
-            document.getElementById('count-task').textContent = counts.task;
-            document.getElementById('count-note').textContent = counts.note;
-            document.getElementById('count-all').textContent = items.length;
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
+
+        // 点击模态框外部关闭
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ESC 键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
 
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -477,7 +640,6 @@
             }
         });
 
-        // 页面加载时检查登录状态
         checkLogin();
     </script>
 </body>
