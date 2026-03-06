@@ -1296,6 +1296,24 @@
             document.body.style.overflow = 'auto';
         }
 
+        // 跳转到信息区
+        function jumpToInbox(target) {
+            // 切换到信息区标签页
+            switchTab('inbox');
+            
+            // 如果指定了分类，切换到对应分类
+            if (target === 'task-latest') {
+                switchInboxCategory('task');
+            } else if (target === 'inbox-all') {
+                switchInboxCategory('all');
+            } else if (target === 'task') {
+                switchInboxCategory('task');
+            }
+            
+            // 滚动到信息区顶部
+            document.getElementById('page-inbox').scrollIntoView({ behavior: 'smooth' });
+        }
+
         // 点击模态框外部关闭
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
