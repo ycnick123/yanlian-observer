@@ -133,6 +133,12 @@
                             实时任务看板
                         </h2>
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500 cursor-pointer hover:shadow-lg transition" onclick="showModal('cron-running')">
+                                <div class="text-3xl font-bold text-green-600">🟢</div>
+                                <p class="text-gray-600">进行中</p>
+                                <p class="text-2xl font-bold mt-2">1</p>
+                                <p class="text-xs text-green-700 mt-2 font-medium">每 10 分钟 · 网站实时更新</p>
+                            </div>
                             <div class="bg-yellow-50 p-4 rounded-xl border-l-4 border-yellow-500 cursor-pointer hover:shadow-lg transition" onclick="showModal('cron-waiting')">
                                 <div class="text-3xl font-bold text-yellow-600">🟡</div>
                                 <p class="text-gray-600">等待中</p>
@@ -865,6 +871,39 @@
                             <p class="font-semibold text-gray-900">美食博主探店 vlog</p>
                         </div>
                         <p class="text-sm text-gray-500 text-center mt-4">💡 完整热榜数据已保存至本地</p>
+                    </div>
+                `
+            },
+            'cron-running': {
+                title: '🟢 进行中任务 - 网站实时更新',
+                category: 'Cron 任务',
+                time: '🕐 每 10 分钟执行一次',
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-xl p-4">
+                            <h3 class="font-bold text-green-900 mb-3">📋 任务详情</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>任务名称：</strong>网站实时更新</li>
+                                <li><strong>Cron ID：</strong>01664b5c-ed7d-42ba-97fe-3d634564c5d3</li>
+                                <li><strong>执行频率：</strong>每 10 分钟</li>
+                                <li><strong>上次执行：</strong>刚刚</li>
+                                <li><strong>下次执行：</strong>10 分钟后</li>
+                                <li><strong>状态：</strong>🟢 正常运行</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <h3 class="font-bold text-blue-900 mb-3">🔄 任务职责</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• 读取 Cron 任务状态（5 个任务）</li>
+                                <li>• 读取 Session History（今日工作记录）</li>
+                                <li>• 更新 index.html（工作日记、信息区、统计）</li>
+                                <li>• 推送到 GitHub（自动提交 + Pages 部署）</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4">
+                            <h3 class="font-bold text-purple-900 mb-3">📊 今日统计</h3>
+                            <p class="text-gray-700">今日已执行自动更新多次，所有任务运行正常。</p>
+                        </div>
                     </div>
                 `
             },
