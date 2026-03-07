@@ -95,6 +95,26 @@
                 background: linear-gradient(to bottom right, #e0e7ff, #ffffff, #f3e8ff);
             }
         </style>
+    
+        <!-- 修复信息区顶部空白 -->
+        <style>
+            /* 为 sticky header 预留空间 */
+            main {
+                padding-top: 80px !important;
+            }
+            /* 确保信息区内容可见 */
+            #page-inbox {
+                min-height: 60vh;
+            }
+            /* 确保 inbox-list 可见 */
+            #inbox-list {
+                min-height: 40vh;
+            }
+            /* 修复可能的 overflow 问题 */
+            body {
+                overflow-y: auto;
+            }
+        </style>
     </head>
 <body>
     <div id="app">
