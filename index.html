@@ -184,8 +184,82 @@
                         </h2>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <!-- 进行中 -->
-                            <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-l-4 border-green-500 cursor-pointer hover:shadow-lg transition text-center" onclick="showModal('cron-running')">
+                            <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-l-4 border-green-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-running')">
                                 <div class="text-4xl mb-2">🟢</div>
+                                <p class="text-gray-700 font-semibold mb-1">进行中</p>
+                                <p class="text-3xl font-bold text-green-600">6</p>
+                                <!-- 悬停预览 -->
+                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
+                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
+                                        <p class="font-semibold mb-2 text-gray-700">📋 任务预览</p>
+                                        <div class="space-y-1 text-gray-600">
+                                            <p>• 网站实时更新</p>
+                                            <p class="text-gray-400">每 10 分钟</p>
+                                            <p>• 心跳监控</p>
+                                            <p class="text-gray-400">每 30 分钟</p>
+                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 等待中 -->
+                            <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border-l-4 border-yellow-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-waiting')">
+                                <div class="text-4xl mb-2">🟡</div>
+                                <p class="text-gray-700 font-semibold mb-1">等待中</p>
+                                <p class="text-3xl font-bold text-yellow-600">3</p>
+                                <!-- 悬停预览 -->
+                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
+                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
+                                        <p class="font-semibold mb-2 text-gray-700">📋 任务预览</p>
+                                        <div class="space-y-1 text-gray-600">
+                                            <p>• 每日新闻简报</p>
+                                            <p class="text-gray-400">08:30</p>
+                                            <p>• VC 投资简报</p>
+                                            <p class="text-gray-400">08:35</p>
+                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 已完成 -->
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border-l-4 border-blue-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-done')">
+                                <div class="text-4xl mb-2">✅</div>
+                                <p class="text-gray-700 font-semibold mb-1">已完成</p>
+                                <p class="text-3xl font-bold text-blue-600">24</p>
+                                <!-- 悬停预览 -->
+                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
+                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
+                                        <p class="font-semibold mb-2 text-gray-700">📋 最近完成</p>
+                                        <div class="space-y-1 text-gray-600">
+                                            <p>• 网站实时更新</p>
+                                            <p class="text-gray-400">2 分钟前</p>
+                                            <p>• 心跳监控</p>
+                                            <p class="text-gray-400">12 分钟前</p>
+                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 错误 -->
+                            <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border-l-4 border-red-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-error')">
+                                <div class="text-4xl mb-2">❌</div>
+                                <p class="text-gray-700 font-semibold mb-1">错误</p>
+                                <p class="text-3xl font-bold text-red-600">0</p>
+                                <!-- 悬停预览 -->
+                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
+                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
+                                        <p class="font-semibold mb-2 text-gray-700">📋 错误记录</p>
+                                        <div class="space-y-1 text-gray-600">
+                                            <p class="text-green-600">✓ 暂无错误</p>
+                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                                 <p class="text-gray-700 font-semibold mb-1">进行中</p>
                                 <p class="text-3xl font-bold text-green-600">1</p>
                             </div>
