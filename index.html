@@ -630,6 +630,11 @@
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById('page-' + tab).classList.remove('hidden');
             document.getElementById('nav-' + tab).classList.add('active');
+            
+            // 切换到信息区时，自动初始化分类显示
+            if (tab === 'inbox') {
+                switchInboxCategory('all');
+            }
             // 移动端修复：切换标签时滚动到顶部
             // 确保页面已经显示后再滚动
             setTimeout(() => {
