@@ -69,53 +69,9 @@
         }
     
 
-        <!-- 备用样式 - 防止 Tailwind CDN 加载失败 -->
-        <style>
-            /* 确保 body 有背景色 */
-            body {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                min-height: 100vh;
-                margin: 0;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            }
-            /* 确保 hidden 类有效 */
-            .hidden {
-                display: none !important;
-            }
-            /* 登录页面样式 */
-            #login-page {
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            }
-            /* 主页面样式 */
-            #main-page {
-                min-height: 100vh;
-                background: linear-gradient(to bottom right, #e0e7ff, #ffffff, #f3e8ff);
-            }
-        </style>
+        
     
-        <!-- 修复信息区顶部空白 -->
-        <style>
-            /* 为 sticky header 预留空间 */
-            main {
-                padding-top: 80px !important;
-            }
-            /* 确保信息区内容可见 */
-            #page-inbox {
-                min-height: 60vh;
-            }
-            /* 确保 inbox-list 可见 */
-            #inbox-list {
-                min-height: 40vh;
-            }
-            /* 修复可能的 overflow 问题 */
-            body {
-                overflow-y: auto;
-            }
-        </style>
+        
     </head>
 <body>
     <div id="app">
@@ -147,7 +103,51 @@
 
         <!-- 主页面（默认隐藏） -->
         <div id="main-page" class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 hidden">
-            <!-- Header -->
+            <!-- 
+        <!-- 备用样式 - 防止 Tailwind CDN 加载失败 -->
+        <style>
+            /* 确保 body 有背景色 */
+            body {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            }
+            /* 确保 hidden 类有效 */
+            .hidden {
+                display: none !important;
+            }
+            /* 登录页面样式 */
+            #login-page {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+            /* 主页面样式 */
+            #main-page {
+                min-height: 100vh;
+                background: linear-gradient(to bottom right, #e0e7ff, #ffffff, #f3e8ff);
+            }
+            /* 修复信息区顶部空白 */
+            main {
+                padding-top: 80px !important;
+            }
+            /* 确保信息区内容可见 */
+            #page-inbox {
+                min-height: 60vh;
+            }
+            /* 确保 inbox-list 可见 */
+            #inbox-list {
+                min-height: 40vh;
+            }
+            /* 修复可能的 overflow 问题 */
+            body {
+                overflow-y: auto;
+            }
+        </style>
+    Header -->
             <header class="bg-white shadow-sm sticky top-0 z-50">
                 <div class="max-w-7xl mx-auto px-4 py-4">
                     <div class="flex items-center justify-between">
