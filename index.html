@@ -2054,7 +2054,245 @@
                     </div>
                 `
             }
-        };
+        
+        // 等待中任务 - 新闻简报
+        'cron-waiting-news': {
+            title: '📰 每日新闻简报',
+            category: '等待中任务',
+            time: '🕐 每天 08:30 执行',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-yellow-50 rounded-xl p-4">
+                        <h3 class="font-bold text-yellow-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>每日新闻简报</li>
+                            <li><strong>Cron ID：</strong>a30c9410-48dc-406b-8d0e-f8c21e07533a</li>
+                            <li><strong>执行时间：</strong>每天 08:30</li>
+                            <li><strong>时区：</strong>Asia/Shanghai</li>
+                            <li><strong>状态：</strong>🟡 等待执行</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">📝 任务内容</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• Exa 搜索最新热点新闻（国内 + 国际）</li>
+                            <li>• 精选 6 条重要新闻</li>
+                            <li>• 每条包含：标题 + 内容 + AI 深度解析</li>
+                            <li>• 生成 HTML 简报并更新网站</li>
+                            <li>• 推送到 GitHub Pages</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 等待中任务 - VC 简报
+        'cron-waiting-vc': {
+            title: '📈 VC 投资简报',
+            category: '等待中任务',
+            time: '🕐 每天 08:35 执行',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-yellow-50 rounded-xl p-4">
+                        <h3 class="font-bold text-yellow-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>VC 投资简报</li>
+                            <li><strong>Cron ID：</strong>65fce810-5c12-4c4f-8f46-d204cfc8031b</li>
+                            <li><strong>执行时间：</strong>每天 08:35</li>
+                            <li><strong>时区：</strong>Asia/Shanghai</li>
+                            <li><strong>状态：</strong>🟡 等待执行</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">📝 任务内容</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 获取投资界最新投融资新闻</li>
+                            <li>• 精选 5-8 条投资新闻</li>
+                            <li>• 每条包含：公司 + 轮次 + 金额 + 投资方 + AI 解析</li>
+                            <li>• 生成 HTML 简报并更新网站</li>
+                            <li>• 推送到 GitHub Pages</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 等待中任务 - 工作复盘
+        'cron-waiting-review': {
+            title: '📝 每日工作复盘',
+            category: '等待中任务',
+            time: '🕐 每天 23:00 执行',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-yellow-50 rounded-xl p-4">
+                        <h3 class="font-bold text-yellow-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>每日工作复盘</li>
+                            <li><strong>Cron ID：</strong>8db22032-a879-4886-8159-977b996e9a12</li>
+                            <li><strong>执行时间：</strong>每天 23:00</li>
+                            <li><strong>时区：</strong>Asia/Shanghai</li>
+                            <li><strong>状态：</strong>🟡 等待执行</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">📝 任务内容</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 读取今日 session history</li>
+                            <li>• 识别用户交代事项和完成工作</li>
+                            <li>• 创建今日复盘文档（memory/YYYY-MM-DD.md）</li>
+                            <li>• 更新 MEMORY.md</li>
+                            <li>• 更新网站信息区和工作日记</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 进行中任务 - 网站更新
+        'cron-running-update': {
+            title: '🔄 网站实时更新',
+            category: '进行中任务',
+            time: '🕐 每 10 分钟执行',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-green-50 rounded-xl p-4">
+                        <h3 class="font-bold text-green-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>网站实时更新</li>
+                            <li><strong>Cron ID：</strong>01664b5c-ed7d-42ba-97fe-3d634564c5d3</li>
+                            <li><strong>执行频率：</strong>每 10 分钟</li>
+                            <li><strong>上次执行：</strong>刚刚</li>
+                            <li><strong>下次执行：</strong>10 分钟后</li>
+                            <li><strong>状态：</strong>🟢 正常运行</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">🔄 任务职责</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 读取 Cron 任务状态（5 个任务）</li>
+                            <li>• 读取 Session History（今日工作记录）</li>
+                            <li>• 更新 index.html（工作日记、信息区、统计）</li>
+                            <li>• 推送到 GitHub（自动提交 + Pages 部署）</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 进行中任务 - 心跳监控
+        'cron-running-heartbeat': {
+            title: '💓 心跳监控',
+            category: '进行中任务',
+            time: '🕐 每 30 分钟执行',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-green-50 rounded-xl p-4">
+                        <h3 class="font-bold text-green-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>心跳监控</li>
+                            <li><strong>Cron ID：</strong>7f3d3737-dddc-4b6a-bd78-18c58c7aad6c</li>
+                            <li><strong>执行频率：</strong>每 30 分钟</li>
+                            <li><strong>上次执行：</strong>刚刚</li>
+                            <li><strong>下次执行：</strong>30 分钟后</li>
+                            <li><strong>状态：</strong>🟢 正常运行</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">🔄 任务职责</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 检查网关状态（http://127.0.0.1:18789）</li>
+                            <li>• 测试飞书连接</li>
+                            <li>• 检查浏览器服务</li>
+                            <li>• 验证网络连通性</li>
+                            <li>• 发现问题立即通知用户</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 已完成任务 - 昨日复盘
+        'cron-done-review': {
+            title: '📝 昨日复盘 - 2026/3/6',
+            category: '已完成任务',
+            time: '✅ 已完成',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>每日工作复盘</li>
+                            <li><strong>Cron ID：</strong>8db22032-a879-4886-8159-977b996e9a12</li>
+                            <li><strong>执行时间：</strong>2026/3/6 23:00</li>
+                            <li><strong>完成状态：</strong>✅ 成功</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-4">
+                        <h3 class="font-bold text-green-900 mb-3">✅ 完成内容</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 创建 memory/2026-03-06.md</li>
+                            <li>• 更新 MEMORY.md（添加 3/6 工作记录）</li>
+                            <li>• 更新网站工作日记</li>
+                            <li>• 更新统计数字</li>
+                            <li>• 推送 GitHub（Commit: xxxxxxx）</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 已完成任务 - 今日新闻
+        'cron-done-news': {
+            title: '📰 今日新闻简报 - 2026/3/7',
+            category: '已完成任务',
+            time: '✅ 已完成',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>每日新闻简报</li>
+                            <li><strong>Cron ID：</strong>a30c9410-48dc-406b-8d0e-f8c21e07533a</li>
+                            <li><strong>执行时间：</strong>2026/3/7 08:30</li>
+                            <li><strong>完成状态：</strong>✅ 成功</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-4">
+                        <h3 class="font-bold text-green-900 mb-3">✅ 简报内容</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 生成 6 条热点新闻（国内 3 条 + 国际 3 条）</li>
+                            <li>• 每条包含 AI 深度解析</li>
+                            <li>• 更新网站信息区（"每日简报"分类）</li>
+                            <li>• 推送 GitHub（Commit: xxxxxxx）</li>
+                            <li>• 飞书通知：📰 每日简报已更新</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // 已完成任务 - 今日 VC
+        'cron-done-vc': {
+            title: '📈 今日 VC 简报 - 2026/3/7',
+            category: '已完成任务',
+            time: '✅ 已完成',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <h3 class="font-bold text-blue-900 mb-3">📋 任务详情</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>任务名称：</strong>VC 投资简报</li>
+                            <li><strong>Cron ID：</strong>65fce810-5c12-4c4f-8f46-d204cfc8031b</li>
+                            <li><strong>执行时间：</strong>2026/3/7 08:35</li>
+                            <li><strong>完成状态：</strong>✅ 成功</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-4">
+                        <h3 class="font-bold text-green-900 mb-3">✅ 简报内容</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 生成 7 条投资新闻</li>
+                            <li>• 每条包含：公司 + 轮次 + 金额 + 投资方 + AI 解析</li>
+                            <li>• 更新网站信息区（"每日简报"分类）</li>
+                            <li>• 推送 GitHub（Commit: xxxxxxx）</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        }
+};
 
         // 显示模态框
         function showModal(id) {
