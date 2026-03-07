@@ -630,6 +630,8 @@
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById('page-' + tab).classList.remove('hidden');
             document.getElementById('nav-' + tab).classList.add('active');
+            // 移动端修复：切换标签时滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // 信息区分类切换
