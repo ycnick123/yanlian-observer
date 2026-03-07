@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta name="updated-at" content="2026-03-07T18:17:17.391Z">
+    <meta name="updated-at" content="2026-03-07T18:28:33.846Z">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="last-update" content="2026/3/8 02:17:17">
+    <meta name="last-update" content="2026/3/8 02:28:33">
     <meta http-equiv="refresh" content="60">
     <title>亚连的人类观察指北</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -186,6 +186,7 @@
                         <!-- 3 列布局 -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             
+                            
                             <!-- 等待中列 -->
                             <div class="bg-yellow-50 rounded-xl border-2 border-yellow-200">
                                 <div class="p-4 border-b border-yellow-200">
@@ -222,10 +223,10 @@
                                     </div>
                                     
                                     <!-- 任务卡片 3 -->
-                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-review')">
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-red-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-review')">
                                         <div class="flex items-start justify-between mb-2">
                                             <p class="font-semibold text-gray-900 text-sm">📝 每日工作复盘</p>
-                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                            <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">异常</span>
                                         </div>
                                         <div class="text-xs text-gray-600 space-y-1">
                                             <p>⏰ 执行时间：23:00</p>
@@ -235,8 +236,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- 进行中列 -->
+
+<!-- 进行中列 -->
                             <div class="bg-green-50 rounded-xl border-2 border-green-200">
                                 <div class="p-4 border-b border-green-200">
                                     <div class="flex items-center justify-between">
@@ -252,7 +253,7 @@
                                             <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">运行中</span>
                                         </div>
                                         <div class="text-xs text-gray-600 space-y-1">
-                                            <p>⏰ 上次执行：08:47:32</p><p>⏳ 下次执行：每 10 分钟</p><p>🕐 频率：每 10 分钟</p>
+                                            <p>⏰ 上次执行：02:16:40</p><p>⏳ 下次执行：每 10 分钟</p><p>🕐 频率：每 10 分钟</p>
                                         </div>
                                     </div>
                                     
@@ -263,15 +264,15 @@
                                             <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">运行中</span>
                                         </div>
                                         <div class="text-xs text-gray-600 space-y-1">
-                                            <p>⏰ 上次执行：22:51:23</p>
-                                            <p>⏳ 下次执行：23:21:23</p>
+                                            <p>⏰ 上次执行：01:41:23</p>
+                                            <p>⏳ 下次执行：02:11:23</p>
                                             <p>🕐 频率：每 30 分钟</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- 已完成列 -->
+
+<!-- 已完成列 -->
                             <div class="bg-blue-50 rounded-xl border-2 border-blue-200">
                                 <div class="p-4 border-b border-blue-200">
                                     <div class="flex items-center justify-between">
@@ -378,6 +379,23 @@
                 <h3 class="font-bold text-gray-900">网站实时更新 - 2026/3/8 02:07:00</h3>
                 <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">最新</span>
             </div>
+
+<!-- 网站实时更新（最新） -->
+<div class="inbox-item bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-l-4 border-indigo-500 cursor-pointer" data-category="note" onclick="showModal('update-1772908113859')">
+    <div class="flex items-start justify-between">
+        <div class="flex-1">
+            <div class="flex items-center space-x-2 mb-2">
+                <span class="text-lg">🔄</span>
+                <h3 class="font-bold text-gray-900">网站实时更新 - 2026/3/8 02:28:33</h3>
+                <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">最新</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-2">同步 Cron 任务状态、更新信息区数据、刷新统计数字，所有任务正常运行</p>
+            <p class="text-xs text-gray-400">🕐 2026/3/8 02:28:33 完成 · 频率：每 10 分钟</p>
+        </div>
+        <span class="text-indigo-600 font-medium">查看 →</span>
+    </div>
+</div>
+
             <p class="text-gray-600 text-sm mb-2">同步 Cron 任务状态、更新信息区数据、刷新统计数字，所有任务正常运行</p>
             <p class="text-xs text-gray-400">🕐 2026/3/8 02:07:00 完成 · 频率：每 10 分钟</p>
         </div>
