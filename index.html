@@ -176,116 +176,155 @@
             <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
                 <!-- 任务看板页面 -->
                 <div id="page-dashboard" class="space-y-6">
-                                        <!-- 任务状态卡片 -->
+                                                            <!-- 任务状态卡片 -->
                     <section class="bg-white rounded-2xl shadow-lg p-6">
                         <h2 class="text-2xl font-bold mb-6 flex items-center">
                             <span class="text-3xl mr-3">📊</span>
                             实时任务看板
                         </h2>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <!-- 进行中 -->
-                            <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-l-4 border-green-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-running')">
-                                <div class="text-4xl mb-2">🟢</div>
-                                <p class="text-gray-700 font-semibold mb-1">进行中</p>
-                                <p class="text-3xl font-bold text-green-600">6</p>
-                                <!-- 悬停预览 -->
-                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
-                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
-                                        <p class="font-semibold mb-2 text-gray-700">📋 任务预览</p>
-                                        <div class="space-y-1 text-gray-600">
-                                            <p>• 网站实时更新</p>
-                                            <p class="text-gray-400">每 10 分钟</p>
-                                            <p>• 心跳监控</p>
-                                            <p class="text-gray-400">每 30 分钟</p>
-                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                        
+                        <!-- 3 列布局 -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            
+                            <!-- 等待中列 -->
+                            <div class="bg-yellow-50 rounded-xl border-2 border-yellow-200">
+                                <div class="p-4 border-b border-yellow-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold text-yellow-900 text-lg">🟡 等待中</h3>
+                                        <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">3 个</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <!-- 任务卡片 1 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-news')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📰 每日新闻简报</p>
+                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 执行时间：08:30</p>
+                                            <p>🕐 频率：每天</p>
+                                            <p>📝 生成 6 条热点新闻</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 2 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-vc')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📈 VC 投资简报</p>
+                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 执行时间：08:35</p>
+                                            <p>🕐 频率：每天</p>
+                                            <p>📝 生成 5-8 条投资新闻</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 3 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-review')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📝 每日工作复盘</p>
+                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 执行时间：23:00</p>
+                                            <p>🕐 频率：每天</p>
+                                            <p>📝 复盘今日工作</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- 等待中 -->
-                            <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border-l-4 border-yellow-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-waiting')">
-                                <div class="text-4xl mb-2">🟡</div>
-                                <p class="text-gray-700 font-semibold mb-1">等待中</p>
-                                <p class="text-3xl font-bold text-yellow-600">3</p>
-                                <!-- 悬停预览 -->
-                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
-                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
-                                        <p class="font-semibold mb-2 text-gray-700">📋 任务预览</p>
-                                        <div class="space-y-1 text-gray-600">
-                                            <p>• 每日新闻简报</p>
-                                            <p class="text-gray-400">08:30</p>
-                                            <p>• VC 投资简报</p>
-                                            <p class="text-gray-400">08:35</p>
-                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                            <!-- 进行中列 -->
+                            <div class="bg-green-50 rounded-xl border-2 border-green-200">
+                                <div class="p-4 border-b border-green-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold text-green-900 text-lg">🟢 进行中</h3>
+                                        <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">2 个</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <!-- 任务卡片 1 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-green-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-running-update')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">🔄 网站实时更新</p>
+                                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">运行中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 上次执行：21:57:18</p>
+                                            <p>⏳ 下次执行：22:07:18</p>
+                                            <p>🕐 频率：每 10 分钟</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 2 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-green-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-running-heartbeat')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">💓 心跳监控</p>
+                                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">运行中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 上次执行：21:47:18</p>
+                                            <p>⏳ 下次执行：22:17:18</p>
+                                            <p>🕐 频率：每 30 分钟</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- 已完成 -->
-                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border-l-4 border-blue-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-done')">
-                                <div class="text-4xl mb-2">✅</div>
-                                <p class="text-gray-700 font-semibold mb-1">已完成</p>
-                                <p class="text-3xl font-bold text-blue-600">24</p>
-                                <!-- 悬停预览 -->
-                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
-                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
-                                        <p class="font-semibold mb-2 text-gray-700">📋 最近完成</p>
-                                        <div class="space-y-1 text-gray-600">
-                                            <p>• 网站实时更新</p>
-                                            <p class="text-gray-400">2 分钟前</p>
-                                            <p>• 心跳监控</p>
-                                            <p class="text-gray-400">12 分钟前</p>
-                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
+                            <!-- 已完成列 -->
+                            <div class="bg-blue-50 rounded-xl border-2 border-blue-200">
+                                <div class="p-4 border-b border-blue-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold text-blue-900 text-lg">✅ 已完成</h3>
+                                        <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">24 个</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <!-- 任务卡片 1 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-done-review')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📝 昨日复盘</p>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">已完成</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 完成时间：23:00</p>
+                                            <p>📅 日期：2026/3/6</p>
+                                            <p class="text-green-600 font-medium">→ 查看详情</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 2 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-done-news')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📰 今日新闻简报</p>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">已完成</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 完成时间：08:30</p>
+                                            <p>📅 日期：2026/3/7</p>
+                                            <p class="text-green-600 font-medium">→ 查看详情</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 3 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-done-vc')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📈 今日 VC 简报</p>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">已完成</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 完成时间：08:35</p>
+                                            <p>📅 日期：2026/3/7</p>
+                                            <p class="text-green-600 font-medium">→ 查看详情</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- 错误 -->
-                            <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border-l-4 border-red-500 cursor-pointer hover:shadow-lg transition relative group" onclick="showModal('cron-error')">
-                                <div class="text-4xl mb-2">❌</div>
-                                <p class="text-gray-700 font-semibold mb-1">错误</p>
-                                <p class="text-3xl font-bold text-red-600">0</p>
-                                <!-- 悬停预览 -->
-                                <div class="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block">
-                                    <div class="bg-white rounded-lg shadow-xl p-3 text-xs">
-                                        <p class="font-semibold mb-2 text-gray-700">📋 错误记录</p>
-                                        <div class="space-y-1 text-gray-600">
-                                            <p class="text-green-600">✓ 暂无错误</p>
-                                            <p class="text-purple-600 font-medium">点击查看详情 →</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                                <p class="text-gray-700 font-semibold mb-1">进行中</p>
-                                <p class="text-3xl font-bold text-green-600">1</p>
-                            </div>
-                            
-                            <!-- 等待中 -->
-                            <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border-l-4 border-yellow-500 cursor-pointer hover:shadow-lg transition text-center" onclick="showModal('cron-waiting')">
-                                <div class="text-4xl mb-2">🟡</div>
-                                <p class="text-gray-700 font-semibold mb-1">等待中</p>
-                                <p class="text-3xl font-bold text-yellow-600">6</p>
-                            </div>
-                            
-                            <!-- 已完成 -->
-                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border-l-4 border-blue-500 cursor-pointer hover:shadow-lg transition text-center" onclick="showModal('cron-done')">
-                                <div class="text-4xl mb-2">✅</div>
-                                <p class="text-gray-700 font-semibold mb-1">已完成</p>
-                                <p class="text-3xl font-bold text-blue-600">24</p>
-                            </div>
-                            
-                            <!-- 错误 -->
-                            <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border-l-4 border-red-500 cursor-pointer hover:shadow-lg transition text-center" onclick="showModal('cron-error')">
-                                <div class="text-4xl mb-2">❌</div>
-                                <p class="text-gray-700 font-semibold mb-1">错误</p>
-                                <p class="text-3xl font-bold text-red-600">0</p>
-                            </div>
-                        </div>
-                    </section></section>
+                    </section>
                 </div>
 
                 <!-- 信息区页面 -->
