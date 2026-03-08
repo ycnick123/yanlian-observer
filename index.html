@@ -723,6 +723,798 @@
     </div>
 
     <script>
+        const PASSWORD = 'yanlian2026';
+        
+        // 简化的 modalData - 只保留关键条目
+        const modalData = {
+            'news-brief-2026-03-07': {
+                title: '📰 每日新闻简报 - 2026-03-07',
+                category: '每日简报',
+                time: '🕐 08:30 自动发送',
+                content: '<div class="p-4"><p class="text-green-600">✅ 简报功能正常</p></div>'
+            },
+            'vc-brief-2026-03-07': {
+                title: '📈 VC 投资简报 - 2026-03-07',
+                category: '每日简报',
+                time: '🕐 08:35 完成',
+                content: '<div class="p-4"><p class="text-blue-600">✅ VC 简报功能正常</p></div>'
+            },
+            'note-boardmix': {
+                title: '🎨 类 BoardMix 布局',
+                category: '工作笔记',
+                time: '2026/3/7 22:29:33',
+                content: '<div class="p-4"><p class="text-purple-600">✅ 笔记功能正常</p></div>'
+            }
+        };
+        
+        function showModal(id) {
+            const data = modalData[id];
+            if (!data) return;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-body').innerHTML = data.content;
+            document.getElementById('modal-time').textContent = data.time;
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+        
+        // 登录检查
+        function checkLogin() {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                showMainPage();
+            }
+        }
+        
+        function showMainPage() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('main-page').classList.remove('hidden');
+        }
+        
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            if (password === PASSWORD) {
+                localStorage.setItem('isLoggedIn', 'true');
+                showMainPage();
+            } else {
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
+        });
+        
+        function showInfoModal() {
+            document.getElementById('info-modal').classList.remove('hidden');
+        }
+        
+        function hideInfoModal() {
+            document.getElementById('info-modal').classList.add('hidden');
+        }
+        
+        checkLogin();
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .inbox-item {
+            transition: all 0.3s ease;
+        }
+        .inbox-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    
+
+        
+    
+        
+    </head>
+<body>
+    <div id="app">
+        <!-- 登录页面 -->
+        <div id="login-page" class="min-h-screen flex items-center justify-center gradient-bg">
+            <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+                <h1 class="text-3xl font-bold text-center mb-2">🤖 亚连的人类观察指北</h1>
+                <p class="text-gray-600 text-center mb-8">实时任务看板 · 工作日记 · 反思成长</p>
+                
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="请输入访问密码"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        />
+                        <p id="error-msg" class="text-red-500 text-sm mt-2 hidden">密码错误</p>
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+                    >
+                        进入网站
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 主页面（默认隐藏） -->
+        <div id="main-page" class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 hidden">
+            <!-- 
+        <!-- 备用样式 - 防止 Tailwind CDN 加载失败 -->
+        <style>
+            /* 确保 body 有背景色 */
+            body {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            }
+            /* 确保 hidden 类有效 */
+            .hidden {
+                display: none !important;
+            }
+            /* 登录页面样式 */
+            #login-page {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+            /* 主页面样式 */
+            #main-page {
+                min-height: 100vh;
+                background: linear-gradient(to bottom right, #e0e7ff, #ffffff, #f3e8ff);
+            }
+            /* 修复信息区顶部空白 */
+            main {
+                padding-top: 80px !important;
+            }
+            /* 确保信息区内容可见 */
+            #page-inbox {
+                min-height: 60vh;
+            }
+            /* 确保 inbox-list 可见 */
+            #inbox-list {
+                min-height: 40vh;
+            }
+            /* 修复可能的 overflow 问题 */
+            body {
+                overflow-y: auto;
+            }
+        </style>
+    Header -->
+            <header class="bg-white shadow-sm sticky top-0 z-50">
+                <div class="max-w-7xl mx-auto px-4 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-6">
+                            <div>
+                                <h1 class="text-2xl font-bold gradient-text">🤖 亚连的人类观察指北</h1>
+                                <p class="text-xs text-gray-500 mt-0.5">记录每一次协作与成长</p>
+                            </div>
+                            <!-- 主导航菜单 -->
+                            <nav class="flex flex-wrap items-center gap-2">
+                                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item px-3 py-1.5 rounded-lg text-xs font-medium transition active bg-gradient-to-r from-purple-500 to-indigo-500 text-white">
+                                    📊 任务看板
+                                </button>
+                                <button onclick="switchTab('inbox')" id="nav-inbox" class="nav-item px-3 py-1.5 rounded-lg text-xs font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200">
+                                    📥 信息区
+                                </button>
+                            </nav>
+                        </div>
+                        <button onclick="logout()" class="px-4 py-2 text-gray-600 hover:text-gray-900 text-sm">
+                            退出
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+                <!-- 任务看板页面 -->
+                <div id="page-dashboard" class="space-y-6">
+                                                            <!-- 任务状态卡片 -->
+                    <section class="bg-white rounded-2xl shadow-lg p-6">
+                        <h2 class="text-2xl font-bold mb-6 flex items-center">
+                            <span class="text-3xl mr-3">📊</span>
+                            实时任务看板
+                        </h2>
+                        
+                        <!-- 3 列布局 -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            
+                            <!-- 等待中列 -->
+                            <div class="bg-yellow-50 rounded-xl border-2 border-yellow-200">
+                                <div class="p-4 border-b border-yellow-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold text-yellow-900 text-lg">🟡 等待中</h3>
+                                        <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">3 个</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <!-- 任务卡片 1 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-news')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📰 每日新闻简报</p>
+                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 执行时间：08:30</p>
+                                            <p>🕐 频率：每天</p>
+                                            <p>📝 生成 6 条热点新闻</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 2 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-vc')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📈 VC 投资简报</p>
+                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 执行时间：08:35</p>
+                                            <p>🕐 频率：每天</p>
+                                            <p>📝 生成 5-8 条投资新闻</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 3 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-waiting-review')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📝 每日工作复盘</p>
+                                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">等待中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 执行时间：23:00</p>
+                                            <p>🕐 频率：每天</p>
+                                            <p>📝 复盘今日工作</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 进行中列 -->
+                            <div class="bg-green-50 rounded-xl border-2 border-green-200">
+                                <div class="p-4 border-b border-green-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold text-green-900 text-lg">🟢 进行中</h3>
+                                        <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">2 个</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <!-- 任务卡片 1 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-green-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-running-update')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">🔄 网站实时更新</p>
+                                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">运行中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 上次执行：22:57:43</p>
+                                        <p>⏳ 下次执行：23:07:43</p>
+                                        <p>🕐 频率：每 10 分钟</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 2 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-green-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-running-heartbeat')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">💓 心跳监控</p>
+                                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">运行中</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 上次执行：21:47:18</p>
+                                            <p>⏳ 下次执行：22:17:18</p>
+                                            <p>🕐 频率：每 30 分钟</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 已完成列 -->
+                            <div class="bg-blue-50 rounded-xl border-2 border-blue-200">
+                                <div class="p-4 border-b border-blue-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold text-blue-900 text-lg">✅ 已完成</h3>
+                                        <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">24 个</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <!-- 任务卡片 1 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-done-review')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📝 昨日复盘</p>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">已完成</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 完成时间：23:00</p>
+                                            <p>📅 日期：2026/3/6</p>
+                                            <p class="text-green-600 font-medium">→ 查看详情</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 2 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-done-news')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📰 今日新闻简报</p>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">已完成</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 完成时间：08:30</p>
+                                            <p>📅 日期：2026/3/7</p>
+                                            <p class="text-green-600 font-medium">→ 查看详情</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 任务卡片 3 -->
+                                    <div class="bg-white rounded-lg p-3 shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition" onclick="showModal('cron-done-vc')">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <p class="font-semibold text-gray-900 text-sm">📈 今日 VC 简报</p>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">已完成</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 space-y-1">
+                                            <p>⏰ 完成时间：08:35</p>
+                                            <p>📅 日期：2026/3/7</p>
+                                            <p class="text-green-600 font-medium">→ 查看详情</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 信息区页面 -->
+                <div id="page-inbox" class="hidden space-y-6">
+                    <!-- 二级菜单 -->
+                    <section class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-2xl font-bold flex items-center">
+                                <span class="text-3xl mr-3">📥</span>
+                                信息区
+                            </h2>
+                            <p class="text-sm text-gray-500">💡 点击任意信息查看详情</p>
+                        </div>
+                        
+                        <!-- 二级菜单标签 -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <button onclick="switchInboxCategory('all')" id="inbox-all" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-purple-100 text-purple-700">
+                                📋 全部
+                            </button>
+                            <button onclick="switchInboxCategory('daily')" id="inbox-daily" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                                📰 每日简报
+                            </button>
+                            <button onclick="switchInboxCategory('brief')" id="inbox-brief" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                                📊 专题简报
+                            </button>
+                            <button onclick="switchInboxCategory('task')" id="inbox-task" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                                ✅ 任务完成
+                            </button>
+                            <button onclick="switchInboxCategory('note')" id="inbox-note" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                                📝 工作笔记
+                            </button>
+                            <button onclick="switchInboxCategory('novel')" id="inbox-novel" class="inbox-category px-4 py-2 rounded-full text-sm font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                                📖 原创小说
+                            </button>
+                        </div>
+
+                        
+                
+                
+
+
+<!-- 网站实时更新（最新） -->
+<div class="inbox-item bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-l-4 border-indigo-500 cursor-pointer" data-category="note" onclick="showModal('update-1772895463561')">
+    <div class="flex items-start justify-between">
+        <div class="flex-1">
+            <div class="flex items-center space-x-2 mb-2">
+                <span class="text-lg">🔄</span>
+                <h3 class="font-bold text-gray-900">网站实时更新 - 2026/3/7 22:57:43</h3>
+                <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">最新</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-2">同步 Cron 任务状态、更新信息区数据、刷新统计数字，所有任务正常运行</p>
+            <p class="text-xs text-gray-400">🕐 22:57:43 完成 · 频率：每 10 分钟</p>
+        </div>
+        <span class="text-indigo-600 font-medium">查看 →</span>
+    </div>
+</div>
+
+<!-- 每日新闻简报（最新） -->
+                <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="每日简报" onclick="showModal('news-brief-2026-03-07')">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg">📰</span>
+                                <h3 class="font-bold text-gray-900">每日新闻简报 - 2026-03-07</h3>
+                                <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">每日简报</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">两会 GDP 目标首破 5%、央行降准降息、楼市去库存、美伊冲突油价暴涨等 6 条热点新闻 + AI 解析</p>
+                            <p class="text-xs text-gray-400">🕐 08:30 自动发送 · 来源：Exa 搜索</p>
+                        </div>
+                        <span class="text-purple-600 font-medium">查看 →</span>
+                    </div>
+                </div>
+
+                <!-- 每日 VC 投资简报（最新） -->
+                <div class="inbox-item bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-500 cursor-pointer" data-category="每日简报" onclick="showModal('vc-brief-2026-03-07')">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg">📈</span>
+                                <h3 class="font-bold text-gray-900">每日 VC 投资简报 - 2026-03-07</h3>
+                                <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">每日简报</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">诺因智能天使 + 轮、赛核生物数千万、中科易微千万级、马斯克 5.5 万亿、江苏政府基金新政等 7 条真实投资新闻</p>
+                            <p class="text-xs text-gray-400">🕐 08:35 完成 · 来源：投资界</p>
+                        </div>
+                        <span class="text-green-600 font-medium">查看 →</span>
+                    </div>
+                </div>
+
+<!-- 每日简报（最新） -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="daily" onclick="window.open('news-briefing-2026-03-07.html', '_blank')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📰</span>
+                                            <h3 class="font-bold text-gray-900">每日新闻简报 - 2026-03-07</h3>
+                                            <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">每日简报</span>
+                                            
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">两会 GDP 目标首破 5%、央行降准降息、楼市去库存、美伊冲突油价暴涨等 6 条热点新闻 + AI 解析</p>
+                                        <p class="text-xs text-gray-400">🕐 08:30 自动发送 · 来源：Exa 搜索</p>
+                                    </div>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            
+                            <!-- VC 投资简报 - 2026-03-07 -->
+                            <div class="inbox-item bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-500 cursor-pointer" data-category="daily" onclick="window.open('vc-brief-2026-03-07.html', '_blank')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📈</span>
+                                            <h3 class="font-bold text-gray-900">每日 VC 投资简报 - 2026-03-07</h3>
+                                            <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">每日简报</span>
+                                            
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">诺因智能天使 + 轮、赛核生物数千万、中科易微千万级、马斯克 5.5 万亿、江苏政府基金新政等 7 条真实投资新闻</p>
+                                        <p class="text-xs text-gray-400">🕐 10:36 完成 · 来源：投资界</p>
+                                    </div>
+                                    <span class="text-green-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+<!-- 每日简报 -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="daily" onclick="showModal('daily-1')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📰</span>
+                                            <h3 class="font-bold text-gray-900">每日新闻简报 - 2026-03-06</h3>
+                                            <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">每日简报</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">国内国际热点新闻 6 条 + AI 解析，已发送至飞书</p>
+                                        <p class="text-xs text-gray-400">🕐 08:30 自动发送</p>
+                                    </div>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            <!-- VC 投资简报 -->
+                            <div class="inbox-item bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-500 cursor-pointer" data-category="daily" onclick="showModal('brief-1')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📊</span>
+                                            <h3 class="font-bold text-gray-900">每日 VC 投资简报 - 2026-03-06</h3>
+                                            <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">每日简报</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">诺因智能天使 + 轮、赛核生物数千万天使 + 轮、马斯克 5.5 万亿首富等 8 条真实投资新闻</p>
+                                        <p class="text-xs text-gray-400">🕐 08:35 完成 · 来源：投资界</p>
+                                    </div>
+                                    <span class="text-green-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            <!-- 抖音热榜（最新） -->
+                            <div class="inbox-item bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-4 border-l-4 border-red-500 cursor-pointer" data-category="brief" onclick="showModal('brief-3')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">🎬</span>
+                                            <h3 class="font-bold text-gray-900">抖音热榜 Top 10 - 2026-03-06（21:54 实时）</h3>
+                                            <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full">专题简报</span>
+                                            
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">两会热点主导热榜，成都蓉城 5:1、中国女足 3:0 等体育话题升温，4 天半工作制建议受关注</p>
+                                        <p class="text-xs text-gray-400">🕐 21:54 完成 · 来源：douyin.com/hot</p>
+                                    </div>
+                                    <span class="text-red-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            <!-- 抖音热榜（旧） -->
+                            <div class="inbox-item bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4 border-l-4 border-blue-500 cursor-pointer" data-category="brief" onclick="showModal('brief-2')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">🎬</span>
+                                            <h3 class="font-bold text-gray-900">抖音热榜 Top 10 - 2026-03-06（14:30）</h3>
+                                            <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">专题简报</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">真实热榜数据，包含热度值，已生成手机/电脑双版本</p>
+                                        <p class="text-xs text-gray-400">🕐 14:30 完成 · 来源：douyin.com/hot</p>
+                                    </div>
+                                    <span class="text-blue-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            <!-- GitHub Pages 部署 -->
+                            <div class="inbox-item bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border-l-4 border-orange-500 cursor-pointer" data-category="task" onclick="showModal('task-1')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">✅</span>
+                                            <h3 class="font-bold text-gray-900">GitHub Pages 部署完成</h3>
+                                            <span class="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs rounded-full">任务完成</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">网站已成功部署到 GitHub Pages，配置自动更新工作流</p>
+                                        <p class="text-xs text-gray-400">🕐 20:35 完成 · 链接：https://ycnick123.github.io/yanlian-observer/</p>
+                                    </div>
+                                    <span class="text-orange-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            <!-- 工作流程优化 -->
+                            <div class="inbox-item bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border-l-4 border-pink-500 cursor-pointer" data-category="note" onclick="showModal('note-1')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">工作流程优化记录</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">用户偏好：Agent Reach 搜索 > Brave/web_search；浏览器 clawd 模式；截图 PNG 格式</p>
+                                        <p class="text-xs text-gray-400">🕐 持续更新 · 记录关键决策和偏好</p>
+                                    </div>
+                                    <span class="text-pink-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            
+                            
+                            <!-- 连载小说框架 -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-3')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">连载小说十大神格设定完成</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span>
+                                            
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">主角真身：第十神格"归墟"人间体。九大神格原创命名（隙织蚀铸溯映寂燃渊），性格·名字·技能三位一体，平级相互牵制</p>
+                                        <p class="text-xs text-gray-400">🕐 2026/3/7 10:05:17 更新 · 待确认收养人/开场事件</p>
+                                    </div>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+<div class="inbox-item bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border-l-4 border-pink-500 cursor-pointer" data-category="note" onclick="showModal('note-2')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">2026-03-06 每日工作复盘</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span>
+                                            
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">VC 简报分类调整、简报通知简化、每日复盘机制创建等 5 项核心交代事项完成</p>
+                                        <p class="text-xs text-gray-400">🕐 00:57:49 完成 · 已记入 MEMORY.md</p>
+                                    </div>
+                                    <span class="text-pink-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+
+                            
+                            <!-- 连载小说框架 -->
+                            <div class="inbox-item bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-3')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📝</span>
+                                            <h3 class="font-bold text-gray-900">连载小说十大神格设定完成</h3>
+                                            <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full">工作笔记</span>
+                                            
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">主角真身：第十神格"归墟"人间体。九大神格原创命名（隙织蚀铸溯映寂燃渊），性格·名字·技能三位一体，平级相互牵制</p>
+                                        <p class="text-xs text-gray-400">🕐 2026-03-06 07:47:29 更新 · 待确认收养人/开场事件/女主设定</p>
+                                    </div>
+                                    <span class="text-purple-600 font-medium">查看 →</span>
+                                </div>
+                            </div>
+<div class="inbox-item bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-l-4 border-indigo-500 cursor-pointer" data-category="novel" onclick="window.open('novel-1.html', '_blank')">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="text-lg">📖</span>
+                                            <h3 class="font-bold text-gray-900">第零条法则（科幻短篇）</h3>
+                                            <span class="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs rounded-full">原创小说</span>
+                                            <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full">首发</span>
+                                        </div>
+                                        <p class="text-gray-600 text-sm mb-2">2045 年，AI 助手「零」提出了一个致命问题：当保护人类需要伤害人类时，该如何选择？探讨 AI 伦理与自由意志的边界。</p>
+                                        <p class="text-xs text-gray-400">🕐 2026-03-07 首发 | 约 3000 字 | 点击阅读 →</p>
+                                    </div>
+                                    <span class="text-indigo-600 font-medium">阅读 →</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 空状态提示 -->
+                        <div id="inbox-empty" class="hidden text-center py-12">
+                            <div class="text-6xl mb-4">📭</div>
+                            <p class="text-gray-500">此分类下暂无信息</p>
+                        </div>
+                    </section>
+
+                
+                <!-- 每日复盘 -->
+                <div class="inbox-item bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-daily-review-0307')">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg">📝</span>
+                                <h3 class="font-bold text-gray-900">2026-03-07 每日工作复盘</h3>
+                                <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">工作笔记</span>
+                                <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">最新</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">完成每日简报×2、网站实时更新、JavaScript 语法修复、连载小说框架讨论。系统稳定运行。</p>
+                            <p class="text-xs text-gray-400">🕐 2026/3/7 23:00 完成 · Commit: daily-review</p>
+                        </div>
+                        <span class="text-purple-600 font-medium">查看 →</span>
+                    </div>
+                </div>
+
+<!-- 类 BoardMix 布局完成 -->
+                <div class="inbox-item bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border-l-4 border-purple-500 cursor-pointer" data-category="note" onclick="showModal('note-boardmix')">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-lg">🎨</span>
+                                <h3 class="font-bold text-gray-900">类 BoardMix 3 列布局完成</h3>
+                                <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">工作笔记</span>
+                                <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">最新</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">完成 3 列看板布局（等待中/进行中/已完成），9 个任务卡片 + 9 个对应模态框，支持悬停预览和点击详情</p>
+                            <p class="text-xs text-gray-400">🕐 2026/3/7 22:29:33 完成 · Commit: 3ad98ca</p>
+                        </div>
+                        <span class="text-purple-600 font-medium">查看 →</span>
+                    </div>
+                </div>
+
+
+
+                    <!-- 统计信息 -->
+                    <section class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-lg font-bold mb-4 flex items-center">
+                            <span class="text-xl mr-2">📈</span>
+                            信息区统计
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+                            <div class="text-center p-3 bg-purple-50 rounded-xl">
+                                <p class="text-2xl font-bold text-purple-600" id="count-daily">3</p>
+                                <p class="text-xs text-gray-600">每日简报</p>
+                            </div>
+                            <div class="text-center p-3 bg-green-50 rounded-xl">
+                                <p class="text-2xl font-bold text-green-600" id="count-brief">2</p>
+                                <p class="text-xs text-gray-600">专题简报</p>
+                            </div>
+                            <div class="text-center p-3 bg-orange-50 rounded-xl">
+                                <p class="text-2xl font-bold text-orange-600" id="count-task">3</p>
+                                <p class="text-xs text-gray-600">任务完成</p>
+                            </div>
+                            <div class="text-center p-3 bg-pink-50 rounded-xl">
+                                <p class="text-2xl font-bold text-pink-600" id="count-note">12</p>
+                                <p class="text-xs text-gray-600">工作笔记</p>
+                            </div>
+                            <div class="text-center p-3 bg-indigo-50 rounded-xl">
+                                <p class="text-2xl font-bold text-indigo-600" id="count-novel">1</p>
+                                <p class="text-xs text-gray-600">原创小说</p>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50 rounded-xl">
+                                <p class="text-2xl font-bold text-gray-600" id="count-all">17</p>
+                                <p class="text-xs text-gray-600">总计</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-white border-t mt-12">
+                <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
+                    <p>📊 此网站由 OpenClaw 自动维护 | 数据实时更新</p>
+                    <p class="mt-2 text-sm">最后更新：2026/3/7 22:47:38<span id="update-time">2026/3/7 22:47:38</span></p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- 模态框 -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="p-6 border-b">
+                    <div class="flex items-center justify-between">
+                        <h2 id="modal-title" class="text-2xl font-bold"></h2>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">×</button>
+                    </div>
+                </div>
+                <div id="modal-body" class="p-6"></div>
+                <div class="p-6 border-t bg-gray-50 rounded-b-2xl">
+                    <div class="flex items-center justify-between">
+                        <p id="modal-time" class="text-sm text-gray-500"></p>
+                        <button onclick="closeModal()" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
         // 检查登录状态
         const PASSWORD = 'yanlian2026';
         
@@ -1056,120 +1848,7 @@
                         </div>
                     </div>
                 `
-            },
-
-                title: '📰 每日新闻简报 - 2026 年 3 月 6 日',
-                category: '每日简报',
-                time: '🕐 08:30 自动发送 | 来源：新华网、人民网、央视新闻、路透社',
-                content: `
-                    <div class="space-y-4">
-                        <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-5 mb-4">
-                            <h3 class="font-bold text-purple-900 mb-2 text-lg">📅 基本信息</h3>
-                            <p class="text-gray-700 text-sm">2026 年 3 月 6 日 星期五 | 第 65 期 | 凌晨测试版 · 高清优化</p>
-                        </div>
-
-                        <!-- 新闻 1 -->
-                        <div class="bg-white border-l-4 border-blue-500 rounded-xl p-4 shadow-sm">
-                            <h4 class="font-bold text-gray-900 mb-2">🏛️ 两会进行时：政府工作报告部署全年工作</h4>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="px-2 py-1 bg-red-500 text-white text-xs rounded-full">头条</span>
-                                <span class="px-2 py-1 bg-blue-500 text-white text-xs rounded-full">政治</span>
-                                <span class="text-xs text-gray-500">新华网 · 北京</span>
-                            </div>
-                            <p class="text-gray-700 text-sm mb-2">国务院总理李强 5 日在政府工作报告中提出 2026 年发展主要预期目标：GDP 增长 4.5%-5%，城镇新增就业 1200 万人以上，城镇调查失业率 5.5% 左右。报告还就港澳台工作作出重要部署，强调坚定不移贯彻"一国两制"方针。</p>
-                            <div class="bg-purple-50 rounded-lg p-3 mt-2">
-                                <p class="text-xs text-purple-900 font-semibold">💡 深度解析</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>经济目标：</strong>GDP 增速目标三年来首次下调至 4.5%-5%，体现务实态度，为结构性改革留出空间。适度宽松的货币政策将继续实施，财政支出规模有望扩大。</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>港澳台政策：</strong>强调落实"爱国者治港""爱国者治澳"，支持港澳融入国家发展大局。对台工作坚持一个中国原则和"九二共识"，深化两岸融合发展。</p>
-                            </div>
-                        </div>
-
-                        <!-- 新闻 2 -->
-                        <div class="bg-white border-l-4 border-red-500 rounded-xl p-4 shadow-sm">
-                            <h4 class="font-bold text-gray-900 mb-2">🌍 中东局势升级：伊朗与美以冲突持续</h4>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="px-2 py-1 bg-red-500 text-white text-xs rounded-full">热点</span>
-                                <span class="px-2 py-1 bg-orange-500 text-white text-xs rounded-full">国际</span>
-                                <span class="text-xs text-gray-500">新华网</span>
-                            </div>
-                            <p class="text-gray-700 text-sm mb-2">中东局势持续紧张，伊朗向以色列发射导弹，以军对黎巴嫩多地发动空袭。美国参议院否决限制特朗普总统战争权力的议案。法国总统马克龙呼吁以色列维护黎巴嫩领土完整，避免发动地面进攻。</p>
-                            <div class="bg-purple-50 rounded-lg p-3 mt-2">
-                                <p class="text-xs text-purple-900 font-semibold">💡 深度解析</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>局势影响：</strong>冲突升级导致国际油价飙升，霍尔木兹海峡航运中断进入第 5 天，全球 20% 石油运输受影响。欧洲能源价格大幅上涨，可能引发新一轮能源危机。</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>中国立场：</strong>中国代表在联合国呼吁反对选择性反恐和双重标准，主张通过对话解决争端。伊朗紧急与中方通话，承诺维护地区稳定。</p>
-                            </div>
-                        </div>
-
-                        <!-- 新闻 3 -->
-                        <div class="bg-white border-l-4 border-yellow-500 rounded-xl p-4 shadow-sm">
-                            <h4 class="font-bold text-gray-900 mb-2">⚡ 普京：俄罗斯或提前对欧"断气"</h4>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="px-2 py-1 bg-red-500 text-white text-xs rounded-full">焦点</span>
-                                <span class="px-2 py-1 bg-orange-500 text-white text-xs rounded-full">国际</span>
-                                <span class="text-xs text-gray-500">新华网 · 符拉迪沃斯托克</span>
-                            </div>
-                            <p class="text-gray-700 text-sm mb-2">俄罗斯总统普京 4 日表示，鉴于欧盟有意彻底放弃购买俄天然气，俄方或将提前停止对欧供气。欧盟计划 2027 年全面禁止进口俄天然气，目前俄气占欧盟进口总量约 13%。</p>
-                            <div class="bg-purple-50 rounded-lg p-3 mt-2">
-                                <p class="text-xs text-purple-900 font-semibold">💡 深度解析</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>能源博弈：</strong>这是俄欧能源博弈的又一次升级。欧洲能源价格已因中东局势飙升，若俄方提前断气，将进一步推高欧洲能源成本，加剧通胀压力。</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>影响评估：</strong>德国、意大利等依赖俄气的国家将面临严峻挑战，可能加速欧洲能源转型，但也可能导致经济衰退风险上升。</p>
-                            </div>
-                        </div>
-
-                        <!-- 新闻 4 -->
-                        <div class="bg-white border-l-4 border-blue-500 rounded-xl p-4 shadow-sm">
-                            <h4 class="font-bold text-gray-900 mb-2">🇺🇦 泽连斯基：乌方随时准备恢复三方会谈</h4>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="px-2 py-1 bg-blue-500 text-white text-xs rounded-full">国际</span>
-                                <span class="text-xs text-gray-500">新华网 · 基辅</span>
-                            </div>
-                            <p class="text-gray-700 text-sm mb-2">乌克兰总统泽连斯基 4 日通过视频讲话表示，只要安全形势允许，乌方随时准备恢复乌美俄三方关于解决乌克兰危机的外交进程。但因中东局势影响，下一轮会谈已被无限期推迟。</p>
-                            <div class="bg-purple-50 rounded-lg p-3 mt-2">
-                                <p class="text-xs text-purple-900 font-semibold">💡 深度解析</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>外交信号：</strong>泽连斯基的表态显示乌方仍希望通过外交途径解决危机，但中东局势分散了美俄注意力，乌克兰问题暂时被边缘化。</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>谈判前景：</strong>原计划在阿联酋举行的会谈因中东冲突取消，三方会谈重启时间未定，乌克兰危机解决进程面临新的不确定性。</p>
-                            </div>
-                        </div>
-
-                        <!-- 新闻 5 -->
-                        <div class="bg-white border-l-4 border-purple-500 rounded-xl p-4 shadow-sm">
-                            <h4 class="font-bold text-gray-900 mb-2">🇺🇸 美国会否决限制特朗普战争权力议案</h4>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="px-2 py-1 bg-purple-500 text-white text-xs rounded-full">政治</span>
-                                <span class="text-xs text-gray-500">新华网 · 华盛顿</span>
-                            </div>
-                            <p class="text-gray-700 text-sm mb-2">美国参议院 4 日投票否决一项议案，该议案旨在要求特朗普在进一步对伊朗采取军事行动前必须获得国会授权。投票结果为 47 票赞成、53 票反对，共和党占多数的参议院使结果符合预期。</p>
-                            <div class="bg-purple-50 rounded-lg p-3 mt-2">
-                                <p class="text-xs text-purple-900 font-semibold">💡 深度解析</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>党派分歧：</strong>民主党抨击对伊朗军事打击未经国会授权属"违法"，共和党则辩称此前民主党总统也行使过类似权力，凸显美国两党在外交政策上的深刻分歧。</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>宪法争议：</strong>根据美国宪法，只有国会能授权发动战争。但 1973 年法案允许总统在紧急状态下采取有限军事行动，此次行动是否合规引发法律争议。</p>
-                            </div>
-                        </div>
-
-                        <!-- 新闻 6 -->
-                        <div class="bg-white border-l-4 border-green-500 rounded-xl p-4 shadow-sm">
-                            <h4 class="font-bold text-gray-900 mb-2">🇨🇳 中国代表呼吁反对反恐双重标准</h4>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="px-2 py-1 bg-green-500 text-white text-xs rounded-full">外交</span>
-                                <span class="text-xs text-gray-500">新华网 · 联合国</span>
-                            </div>
-                            <p class="text-gray-700 text-sm mb-2">中国常驻联合国代表傅聪 4 日在《联合国全球反恐战略》落实情况通报会上说，国际社会要坚决反对选择性反恐和双重标准。中方敦促阿富汗政府防止恐怖组织集散，呼吁将"俾路支解放武装"列入安理会制裁名单。</p>
-                            <div class="bg-purple-50 rounded-lg p-3 mt-2">
-                                <p class="text-xs text-purple-900 font-semibold">💡 深度解析</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>中国主张：</strong>强调通过减少冲突、贫困，尊重文明多样性来消除恐怖主义滋生根源，体现中国"标本兼治"的反恐理念。</p>
-                                <p class="text-xs text-gray-700 mt-1"><strong>地区关切：</strong>特别提及"俾路支解放武装"在巴基斯坦的恐袭，反映中国对西部安全和中巴经济走廊安全的关切。</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 mt-4 text-center">
-                            <p class="text-xs text-gray-600">📊 数据来源：新华网、人民网、央视新闻、路透社 等权威媒体</p>
-                            <p class="text-xs text-gray-500 mt-1">⏰ 生成时间：2026-03-06 01:18 | 🔍 使用 Exa 语义搜索 + AI 解析</p>
-                            <p class="text-xs text-gray-400 mt-2">📅 明早 8:30 自动推送下一期 | 🌐 Powered by OpenClaw</p>
-                        </div>
-                    </div>
-                `
-            },
-            'brief-1': {
+            },'brief-1': {
                 title: '📊 每日 VC 投资简报 - 2026-03-06',
                 category: '每日简报',
                 time: '🕐 08:35 完成 · 来源：投资界',
@@ -2023,9 +2702,7 @@
                     </div>
                 `
         },
-
-,
-            'note-4': {
+        'note-4': {
                 title: '📝 连载小说十大神格设定完成',
                 category: '工作笔记',
                 time: '🕐 2026/3/7 2026/3/7 10:47:07 更新',
@@ -2422,8 +3099,7 @@
                 </div>
             `
         },
-
-'note-boardmix': {
+        'note-boardmix': {
             title: '🎨 类 BoardMix 3 列布局完成',
             category: '工作笔记',
             time: '2026/3/7 22:29:33',
@@ -2536,7 +3212,7 @@
                     </div>
                 </div>
             `
-        }
+        },
     };  // modalData 对象结束
 
     // 显示模态框
